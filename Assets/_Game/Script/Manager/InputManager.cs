@@ -193,6 +193,36 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void ForceStartDrag(Transform targetObj)
+    {
+        draggedObject = targetObj;
+        mouseDownPos = Input.mousePosition;
+
+        ItemGraphic itemGraphic = draggedObject.GetComponent<ItemGraphic>();
+        if (itemGraphic != null)
+        {
+            itemGraphic.SetSortingLayerToTop();
+        }
+
+        ItemMovement itemMovement = draggedObject.GetComponent<ItemMovement>();
+        if (itemMovement != null)
+        {
+            itemMovement.UpdateSpawnPos();
+        }
+
+        ItemController itemCtrl = draggedObject.GetComponent<ItemController>();
+        if (itemCtrl != null)
+        {
+            itemCtrl.onDragStart?.Invoke();
+        }
+
+        dragDepth = mainCamera.WorldToScreenPoint(draggedObject.position).z;
+        Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, dragDepth));
+        
+        // Vì vật phẩm sinh ra ngay tại đầu chuột, nên offset = 0
+        offset = Vector3.zero; 
+    }
+
     public void ForceDrop()
     {
         MouseUp();

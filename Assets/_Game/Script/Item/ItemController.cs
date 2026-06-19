@@ -29,6 +29,8 @@ public class ItemController : MonoBehaviour
     public float dropDistanceThreshold = 1f;
     [Tooltip("Bật tắt tính năng tự động ẩn hình ảnh Item khi thả trúng đích")]
     public bool hideSpriteOnDrop = true;
+    [Tooltip("Tự động tắt Collider (ngăn tương tác) sau khi hoàn thành nhiệm vụ (Click xong / Thả đúng đích)")]
+    public bool disableColliderOnComplete = true;
 
     [Header("Events")]
     public UnityEvent onClick;
@@ -97,7 +99,7 @@ public class ItemController : MonoBehaviour
         }
 
         // Tắt collider để tránh tương tác kéo thả nữa (Chỉ tắt ở lần click cuối)
-        if (isLastAnim)
+        if (isLastAnim && disableColliderOnComplete)
         {
             Collider col = GetComponent<Collider>();
             if (col != null)
