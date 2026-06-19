@@ -151,6 +151,12 @@ public class InputManager : MonoBehaviour
                 itemGraphic.SetSortingLayerToTop();
             }
 
+            ItemMovement itemMovement = draggedObject.GetComponent<ItemMovement>();
+            if (itemMovement != null)
+            {
+                itemMovement.UpdateSpawnPos();
+            }
+
             dragDepth = mainCamera.WorldToScreenPoint(draggedObject.position).z;
 
             Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, dragDepth));

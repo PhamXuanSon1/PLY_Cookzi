@@ -39,6 +39,10 @@ public class ItemController : MonoBehaviour
     public UnityEvent onAnimFinished;
 
     [Header("Animation Setup")]
+    [Tooltip("Bật chế độ Click tuần tự: Mỗi lần click/thả chỉ phát 1 Anim trong list. Khi phát hết Anim cuối cùng mới tính là hoàn thành nhiệm vụ.")]
+    public bool isSequentialClick = false;
+    private int currentClickIndex = 0;
+    
     public List<AnimObjectData> animationObjects = new List<AnimObjectData>();
 
     [Header("Audio")]
@@ -49,6 +53,23 @@ public class ItemController : MonoBehaviour
 
     public void PlayDropAnimations()
     {
+        bool isLastAnim = true;
+        List<AnimObjectData> animsToPlay = animationObjects;
+
+        // Nếu bật chế độ tuần tự, chỉ lấy 1 anim tương ứng với số lần click hiện tại
+        if (isSequentialClick && animationObjects.Count > 0)
+        {
+            if (currentClickIndex < animationObjects.Count)
+            {
+                animsToPlay = new List<AnimObjectData>() { animationObjects[currentClickIndex] };
+                currentClickIndex++;
+                if (currentClickIndex < animationObjects.Count)
+                {
+                    isLastAnim = false;
+                }
+            }
+        }
+
         if (Ply_SoundManager.Ins != null && fxSoundsStartAnim != null)
         {
             foreach (FxType sound in fxSoundsStartAnim)
@@ -62,8 +83,8 @@ public class ItemController : MonoBehaviour
 
         onDrop?.Invoke();
 
-        // Ẩn hiển thị của ItemGraphic đi để các object animation chạy
-        if (hideSpriteOnDrop)
+        // Ẩn hiển thị của ItemGraphic đi để các object animation chạy (Chỉ chạy ở lần click cuối)
+        if (isLastAnim && hideSpriteOnDrop)
         {
             ItemGraphic graphic = GetComponent<ItemGraphic>();
             if (graphic != null)
@@ -75,22 +96,25 @@ public class ItemController : MonoBehaviour
             }
         }
 
-        // Tắt collider để tránh tương tác kéo thả nữa
-        Collider col = GetComponent<Collider>();
-        if (col != null)
+        // Tắt collider để tránh tương tác kéo thả nữa (Chỉ tắt ở lần click cuối)
+        if (isLastAnim)
         {
-            col.enabled = false;
+            Collider col = GetComponent<Collider>();
+            if (col != null)
+            {
+                col.enabled = false;
+            }
         }
 
         float maxDuration = 0f;
-        for (int i = 0; i < animationObjects.Count; i++)
+        for (int i = 0; i < animsToPlay.Count; i++)
         {
-            float duration = animationObjects[i].delayFromStart + animationObjects[i].durationToDeactivate;
+            float duration = animsToPlay[i].delayFromStart + animsToPlay[i].durationToDeactivate;
             if (duration > maxDuration)
             {
                 maxDuration = duration;
             }
-            StartCoroutine(ActivateObjectWithDelay(animationObjects[i]));
+            StartCoroutine(ActivateObjectWithDelay(animsToPlay[i]));
         }
 
         if (InputManager.Instance != null)
@@ -98,22 +122,26 @@ public class ItemController : MonoBehaviour
             InputManager.Instance.BlockInputFor(maxDuration);
         }
         
-        if (HandHintMmanager.Instance != null)
+        // Các logic hoàn thành Game chỉ chạy ở lần click cuối cùng
+        if (isLastAnim)
         {
-            HandHintMmanager.Instance.OnItemCompleted(this, maxDuration);
-        }
+            if (HandHintMmanager.Instance != null)
+            {
+                HandHintMmanager.Instance.OnItemCompleted(this, maxDuration);
+            }
 
-        if (ItemManager.Instance != null)
-        {
-            ItemManager.Instance.AddDroppedItem(this);
-        }
+            if (ItemManager.Instance != null)
+            {
+                ItemManager.Instance.AddDroppedItem(this);
+            }
 
-        if (fxSoundsAfterAnim != null && fxSoundsAfterAnim.Count > 0)
-        {
-            StartCoroutine(PlaySoundsAfterDelay(fxSoundsAfterAnim, maxDuration));
-        }
+            if (fxSoundsAfterAnim != null && fxSoundsAfterAnim.Count > 0)
+            {
+                StartCoroutine(PlaySoundsAfterDelay(fxSoundsAfterAnim, maxDuration));
+            }
 
-        StartCoroutine(InvokeAnimFinished(maxDuration));
+            StartCoroutine(InvokeAnimFinished(maxDuration));
+        }
     }
 
     private IEnumerator InvokeAnimFinished(float delay)
