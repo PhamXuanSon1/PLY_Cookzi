@@ -270,32 +270,41 @@ public class InputManager : MonoBehaviour
                 float distance = Vector3.Distance(draggedObject.position, itemController.dropTarget.position);
                 if (distance <= itemController.dropDistanceThreshold)
                 {
-                    // Kiểm tra xem Drop Target có bị khóa không (chỉ nhận 1 item)
-                    DropTargetSlot slot = itemController.dropTarget.GetComponent<DropTargetSlot>();
-                    if (slot != null)
+                    // Kiểm tra xem Item có đang bị khóa không
+                    if (itemController.isLocked)
                     {
-                        if (itemController.isTool)
+                        itemController.onInteractWhileLocked?.Invoke();
+                        // Không xử lý thả thành công, để nó tự bay về
+                    }
+                    else
+                    {
+                        // Kiểm tra xem Drop Target có bị khóa không (chỉ nhận 1 item)
+                        DropTargetSlot slot = itemController.dropTarget.GetComponent<DropTargetSlot>();
+                        if (slot != null)
                         {
-                            // Dao chỉ được kéo vào khi thớt ĐÃ BỊ CHIẾM (Có đồ trên thớt)
-                            if (slot.isOccupied)
+                            if (itemController.isTool)
                             {
-                                dropSuccess = true;
-                                slot.ApplyToolToCurrentItem(); // Tự động bắt nguyên liệu hoạt động
+                                // Dao chỉ được kéo vào khi thớt ĐÃ BỊ CHIẾM (Có đồ trên thớt)
+                                if (slot.isOccupied)
+                                {
+                                    dropSuccess = true;
+                                    slot.ApplyToolToCurrentItem(); // Tự động bắt nguyên liệu hoạt động
+                                }
+                            }
+                            else
+                            {
+                                // Nguyên liệu chỉ được kéo vào khi thớt TRỐNG
+                                if (!slot.isOccupied)
+                                {
+                                    dropSuccess = true;
+                                    slot.SetCurrentItem(itemController.gameObject); // Tự động đăng ký nguyên liệu vào thớt
+                                }
                             }
                         }
                         else
                         {
-                            // Nguyên liệu chỉ được kéo vào khi thớt TRỐNG
-                            if (!slot.isOccupied)
-                            {
-                                dropSuccess = true;
-                                slot.SetCurrentItem(itemController.gameObject); // Tự động đăng ký nguyên liệu vào thớt
-                            }
+                            dropSuccess = true;
                         }
-                    }
-                    else
-                    {
-                        dropSuccess = true;
                     }
                 }
             }

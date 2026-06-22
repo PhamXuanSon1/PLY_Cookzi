@@ -36,6 +36,13 @@ public class ItemController : MonoBehaviour
     [Tooltip("Đánh dấu nếu đây là Công Cụ (như Dao). Công cụ chỉ có thể thả vào Thớt khi Thớt ĐÃ CÓ nguyên liệu nằm trên đó.")]
     public bool isTool = false;
 
+    [Header("Khóa Item (Condition)")]
+    [Tooltip("Nếu bật (True), người chơi không thể kéo hoặc click item này cho đến khi nó được Unlock()")]
+    public bool isLocked = false;
+
+    [Tooltip("Sự kiện gọi khi cố tình tương tác lúc Item đang bị khóa (vd: phát âm thanh lỗi, báo đỏ...)")]
+    public UnityEvent onInteractWhileLocked;
+
     [Header("Events")]
     public UnityEvent onClick;
     public UnityEvent onDrop;
@@ -215,6 +222,22 @@ public class ItemController : MonoBehaviour
     public void SetToClickOnly()
     {
         itemType = ItemType.ClickOnly;
+    }
+
+    /// <summary>
+    /// Mở khóa Item (gọi từ UnityEvent của Item khác khi hoàn thành)
+    /// </summary>
+    public void UnlockItem()
+    {
+        isLocked = false;
+    }
+
+    /// <summary>
+    /// Khóa Item lại
+    /// </summary>
+    public void LockItem()
+    {
+        isLocked = true;
     }
 
     private void HideSprite()
