@@ -34,4 +34,14 @@ public class ItemMovement : MonoBehaviour
             }
         });
     }
+
+    /// <summary>
+    /// Nhảy về vị trí gốc ngay lập tức (Dùng khi ẩn item đi mà muốn nó nằm chờ sẵn ở chỗ cũ)
+    /// </summary>
+    public void SnapToSpawn()
+    {
+        transform.DOKill();
+        isReturning = false;
+        transform.position = SpawnPos;
+    }
 }

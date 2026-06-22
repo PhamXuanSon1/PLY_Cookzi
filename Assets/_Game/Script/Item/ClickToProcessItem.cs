@@ -21,6 +21,12 @@ public class ClickToProcessItem : MonoBehaviour
     [Tooltip("Vị trí của Mask lúc cắt xong hoàn toàn (100%)")]
     public Vector3 maskEndPos;
 
+    [Header("Vật Thể Dịch Chuyển Dần (Tùy chọn)")]
+    [Tooltip("Ví dụ: Kéo con dao vào đây để nó nhích dần theo từng nhát chém")]
+    public Transform moveObject;
+    public Vector3 moveStartPos;
+    public Vector3 moveEndPos;
+
     private int currentClicks = 0;
     private ItemController itemController;
 
@@ -37,6 +43,11 @@ public class ClickToProcessItem : MonoBehaviour
         {
             maskTransform.localPosition = maskStartPos;
         }
+
+        if (moveObject != null)
+        {
+            moveObject.localPosition = moveStartPos;
+        }
     }
 
     private void ProcessClick()
@@ -49,11 +60,17 @@ public class ClickToProcessItem : MonoBehaviour
         currentClicks++;
         onSingleClick?.Invoke();
 
-        // Tịnh tiến Sprite Mask
+        // Tịnh tiến Sprite Mask và Object
+        float percent = (float)currentClicks / requiredClicks;
+
         if (maskTransform != null)
         {
-            float percent = (float)currentClicks / requiredClicks;
             maskTransform.localPosition = Vector3.Lerp(maskStartPos, maskEndPos, percent);
+        }
+
+        if (moveObject != null)
+        {
+            moveObject.localPosition = Vector3.Lerp(moveStartPos, moveEndPos, percent);
         }
 
         if (currentClicks >= requiredClicks)
@@ -72,6 +89,10 @@ public class ClickToProcessItem : MonoBehaviour
         {
             maskTransform.localPosition = maskStartPos;
         }
+        if (moveObject != null)
+        {
+            moveObject.localPosition = moveStartPos;
+        }
     }
 
     // --- CÁC NÚT HỖ TRỢ TRONG EDITOR ---
@@ -79,11 +100,13 @@ public class ClickToProcessItem : MonoBehaviour
     private void SaveStartPos() 
     { 
         if(maskTransform != null) maskStartPos = maskTransform.localPosition; 
+        if(moveObject != null) moveStartPos = moveObject.localPosition;
     }
     
     [ContextMenu("Save Current Mask Pos as END")]
     private void SaveEndPos() 
     { 
         if(maskTransform != null) maskEndPos = maskTransform.localPosition; 
+        if(moveObject != null) moveEndPos = moveObject.localPosition;
     }
 }

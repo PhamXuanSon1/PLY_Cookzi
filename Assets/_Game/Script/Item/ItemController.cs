@@ -30,8 +30,11 @@ public class ItemController : MonoBehaviour
     public float dropDistanceThreshold = 1f;
     [Tooltip("Bật tắt tính năng tự động ẩn hình ảnh Item khi thả trúng đích")]
     public bool hideSpriteOnDrop = true;
-    [Tooltip("Tự động tắt Collider (ngăn tương tác) sau khi hoàn thành nhiệm vụ (Click xong / Thả đúng đích)")]
+    [Tooltip("Tự động tắt Collider (ngăn tương tác) sau khi hoàn thành nhiệm vụ (Click xong / Thả trúng đích)")]
     public bool disableColliderOnComplete = true;
+
+    [Tooltip("Đánh dấu nếu đây là Công Cụ (như Dao). Công cụ chỉ có thể thả vào Thớt khi Thớt ĐÃ CÓ nguyên liệu nằm trên đó.")]
+    public bool isTool = false;
 
     [Header("Events")]
     public UnityEvent onClick;
@@ -85,6 +88,8 @@ public class ItemController : MonoBehaviour
         }
 
         onDrop?.Invoke();
+
+        if (!gameObject.activeInHierarchy) return;
 
         // Ẩn hiển thị của ItemGraphic đi để các object animation chạy (Chỉ chạy ở lần click cuối)
         if (isLastAnim && hideSpriteOnDrop)

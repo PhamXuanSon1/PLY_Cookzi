@@ -148,9 +148,12 @@ public class InputManager : MonoBehaviour
             draggedItemType = itemController != null ? itemController.itemType : ItemType.DragAndDrop;
             
             ItemGraphic itemGraphic = draggedObject.GetComponent<ItemGraphic>();
-            if (itemGraphic != null && itemController != null && itemController.itemType != ItemType.SwipeInPlace)
+            if (itemGraphic != null)
             {
-                itemGraphic.SetSortingLayerToTop();
+                if (itemController == null || itemController.itemType != ItemType.SwipeInPlace)
+                {
+                    itemGraphic.SetSortingLayerToTop();
+                }
             }
 
             ItemMovement itemMovement = draggedObject.GetComponent<ItemMovement>();
@@ -267,7 +270,33 @@ public class InputManager : MonoBehaviour
                 float distance = Vector3.Distance(draggedObject.position, itemController.dropTarget.position);
                 if (distance <= itemController.dropDistanceThreshold)
                 {
-                    dropSuccess = true;
+                    // Kiểm tra xem Drop Target có bị khóa không (chỉ nhận 1 item)
+                    DropTargetSlot slot = itemController.dropTarget.GetComponent<DropTargetSlot>();
+                    if (slot != null)
+                    {
+                        if (itemController.isTool)
+                        {
+                            // Dao chỉ được kéo vào khi thớt ĐÃ BỊ CHIẾM (Có đồ trên thớt)
+                            if (slot.isOccupied)
+                            {
+                                dropSuccess = true;
+                                slot.ApplyToolToCurrentItem(); // Tự động bắt nguyên liệu hoạt động
+                            }
+                        }
+                        else
+                        {
+                            // Nguyên liệu chỉ được kéo vào khi thớt TRỐNG
+                            if (!slot.isOccupied)
+                            {
+                                dropSuccess = true;
+                                slot.SetCurrentItem(itemController.gameObject); // Tự động đăng ký nguyên liệu vào thớt
+                            }
+                        }
+                    }
+                    else
+                    {
+                        dropSuccess = true;
+                    }
                 }
             }
 

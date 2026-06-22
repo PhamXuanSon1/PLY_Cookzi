@@ -76,4 +76,19 @@ public class ItemGraphic : MonoBehaviour
             transform.DORotate(originRotation.eulerAngles, rotationDuration).SetEase(Ease.OutQuad);
         }
     }
+
+    /// <summary>
+    /// Trả tất cả các ảnh về trạng thái không dùng Mask (None).
+    /// Rất hữu ích khi kéo nguyên liệu đã thái ra khỏi thớt để nó không bị tàng hình.
+    /// </summary>
+    public void ResetMaskInteraction()
+    {
+        for (int i = 0; i < spriteRenderers.Count; i++)
+        {
+            if (spriteRenderers[i] != null)
+            {
+                spriteRenderers[i].maskInteraction = SpriteMaskInteraction.None;
+            }
+        }
+    }
 }
