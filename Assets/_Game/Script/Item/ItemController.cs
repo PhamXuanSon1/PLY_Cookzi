@@ -7,7 +7,8 @@ public enum ItemType
 {
     DragAndDrop,
     ClickOnly,
-    Pickable // Dành cho các vật phẩm chỉ có thể dùng công cụ (như kẹp) để gắp
+    Pickable, // Dành cho các vật phẩm chỉ có thể dùng công cụ (như kẹp) để gắp
+    SwipeInPlace // Dành cho vật phẩm đứng yên, yêu cầu người chơi chà xát/quẹt để hoàn thành
 }
 
 [System.Serializable]
@@ -88,14 +89,7 @@ public class ItemController : MonoBehaviour
         // Ẩn hiển thị của ItemGraphic đi để các object animation chạy (Chỉ chạy ở lần click cuối)
         if (isLastAnim && hideSpriteOnDrop)
         {
-            ItemGraphic graphic = GetComponent<ItemGraphic>();
-            if (graphic != null)
-            {
-                for (int i = 0; i < graphic.spriteRenderers.Count; i++)
-                {
-                    graphic.spriteRenderers[i].enabled = false;
-                }
-            }
+            HideSprite();
         }
 
         // Tắt collider để tránh tương tác kéo thả nữa (Chỉ tắt ở lần click cuối)
@@ -199,6 +193,31 @@ public class ItemController : MonoBehaviour
                     Ply_SoundManager.Ins.PlayFx(sound);
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Chuyển đổi Item thành dạng Kéo Thả (Dùng để gọi trong Unity Event)
+    /// </summary>
+    public void SetToDragAndDrop()
+    {
+        itemType = ItemType.DragAndDrop;
+    }
+
+    /// <summary>
+    /// Chuyển đổi Item thành dạng Bấm (Dùng để gọi trong Unity Event)
+    /// </summary>
+    public void SetToClickOnly()
+    {
+        itemType = ItemType.ClickOnly;
+    }
+
+    private void HideSprite()
+    {
+        SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>(true);
+        foreach (var sr in srs)
+        {
+            if (sr != null) sr.enabled = false;
         }
     }
 }

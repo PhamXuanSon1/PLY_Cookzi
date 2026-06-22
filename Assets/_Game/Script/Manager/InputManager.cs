@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
 
     private Transform draggedObject;
+    private ItemType draggedItemType;
     private Vector3 offset;
     private float dragDepth;
     private float blockInputUntilTime = 0f;
@@ -144,9 +145,10 @@ public class InputManager : MonoBehaviour
             }
 
             draggedObject = hit.transform;
+            draggedItemType = itemController != null ? itemController.itemType : ItemType.DragAndDrop;
             
             ItemGraphic itemGraphic = draggedObject.GetComponent<ItemGraphic>();
-            if (itemGraphic != null)
+            if (itemGraphic != null && itemController != null && itemController.itemType != ItemType.SwipeInPlace)
             {
                 itemGraphic.SetSortingLayerToTop();
             }
@@ -178,6 +180,13 @@ public class InputManager : MonoBehaviour
     {
         if (draggedObject != null)
         {
+            ItemController itemController = draggedObject.GetComponent<ItemController>();
+            if (itemController != null && itemController.itemType == ItemType.SwipeInPlace)
+            {
+                // Bỏ qua bước di chuyển vị trí, giữ nguyên đồ vật tại chỗ
+                return;
+            }
+
             Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, dragDepth));
             Vector3 targetPos = mouseWorldPos + offset;
 
@@ -196,6 +205,7 @@ public class InputManager : MonoBehaviour
     public void ForceStartDrag(Transform targetObj)
     {
         draggedObject = targetObj;
+        draggedItemType = draggedObject.GetComponent<ItemController>()?.itemType ?? ItemType.DragAndDrop;
         mouseDownPos = Input.mousePosition;
 
         ItemGraphic itemGraphic = draggedObject.GetComponent<ItemGraphic>();
@@ -241,6 +251,13 @@ public class InputManager : MonoBehaviour
             if (isClick && itemController != null)
             {
                 itemController.onClick?.Invoke();
+            }
+
+            if (draggedItemType == ItemType.SwipeInPlace)
+            {
+                // Với dạng Swipe, kết thúc tại đây, không xét chuyện rớt hay nảy về
+                draggedObject = null;
+                return;
             }
 
             bool dropSuccess = false;
