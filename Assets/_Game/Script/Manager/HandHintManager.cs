@@ -150,21 +150,49 @@ public class HandHintManager : MonoBehaviour
             // 1. Nếu là cái Kẹp (TongItem)
             if (currentItem is TongItem tongItem)
             {
+                Debug.Log("[HandHint] Enter TongItem hint logic! currentItem: " + tongItem.name);
                 handHintObject.transform.position = currentItem.transform.position;
                 Transform target = tongItem.GetHintTarget();
                 
+                Debug.Log("[HandHint] Target from GetHintTarget: " + (target != null ? target.name : "NULL"));
+                Debug.Log("[HandHint] Tong dropTarget: " + (tongItem.dropTarget != null ? tongItem.dropTarget.name : "NULL"));
+
                 if (target != null)
                 {
                     // Nếu mục tiêu hiện tại KHÁC cái rổ (tức là Kẹp đang trống, mục tiêu là đồ ăn)
-                    if (target != tongItem.dropTarget && tongItem.dropTarget != null)
+                    if (target != tongItem.dropTarget)
                     {
-                        // Tạo chuỗi hoạt ảnh bay 3 điểm: Kẹp -> Đồ ăn -> Rổ
-                        Sequence seq = DOTween.Sequence();
-                        seq.Append(handHintObject.transform.DOMove(target.position, dragAnimDuration * 0.5f).SetEase(Ease.InOutSine));
-                        seq.Append(handHintObject.transform.DOMove(tongItem.dropTarget.position, dragAnimDuration * 0.5f).SetEase(Ease.InOutSine));
-                        seq.SetLoops(-1, LoopType.Restart);
+                        Transform finalDropTarget = tongItem.dropTarget;
 
-                        currentDragTween = seq;
+                        // Tìm drop target của đồ ăn (Nhộng)
+                        ItemController foodItem = target.GetComponent<ItemController>();
+                        if (foodItem != null && foodItem.dropTarget != null)
+                        {
+                            finalDropTarget = foodItem.dropTarget;
+                        }
+
+                        // Kiểm tra nếu finalDropTarget trùng với target thì mượn dropTarget của Tong
+                        if (finalDropTarget == target) 
+                        {
+                            finalDropTarget = tongItem.dropTarget;
+                        }
+
+                        if (finalDropTarget != null && finalDropTarget != target)
+                        {
+                            // Tạo chuỗi hoạt ảnh bay 3 điểm: Kẹp -> Đồ ăn -> Rổ
+                            Sequence seq = DOTween.Sequence();
+                            seq.Append(handHintObject.transform.DOMove(target.position, dragAnimDuration * 0.5f).SetEase(Ease.InOutSine));
+                            seq.Append(handHintObject.transform.DOMove(finalDropTarget.position, dragAnimDuration * 0.5f).SetEase(Ease.InOutSine));
+                            seq.SetLoops(-1, LoopType.Restart);
+                            currentDragTween = seq;
+                        }
+                        else
+                        {
+                            // Fallback: Nếu không tìm thấy target cuối, chỉ bay đến đồ ăn
+                            currentDragTween = handHintObject.transform.DOMove(target.position, dragAnimDuration)
+                                .SetEase(Ease.InOutSine)
+                                .SetLoops(-1, LoopType.Restart);
+                        }
                     }
                     else // Nếu mục tiêu LÀ cái rổ (Kẹp đang ngậm đồ ăn)
                     {
