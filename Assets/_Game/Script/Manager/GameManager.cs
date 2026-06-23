@@ -15,7 +15,21 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        Ply_SoundManager.Ins.PlayFx(fxStartVoice);
+        // Ply_SoundManager.Ins.PlayFx(fxStartVoice);
+        isTimerRunning = true;
+    }
+
+    private void Update()
+    {
+        if (isGameEnded || !isTimerRunning) return;
+
+        timeLimit -= Time.deltaTime;
+        
+        if (timeLimit <= 0f)
+        {
+            timeLimit = 0f;
+            LoseGame();
+        }
     }
 
     public void GotoStore()
@@ -25,16 +39,40 @@ public class GameManager : MonoBehaviour
         Playable.InstallFullGame();
     }
 
+    [Header("UI Canvas")]
+    public GameObject winCanvas;
+    public GameObject loseCanvas;
+
+    [Header("Timer Settings")]
+    public float timeLimit = 60f;
+    private bool isTimerRunning = false;
+
     [Header("Game State")]
+    public UnityEngine.Events.UnityEvent onWinGame;
     public UnityEngine.Events.UnityEvent onLoseGame;
     [HideInInspector] public bool isGameEnded = false;
 
-    // Hàm này dùng để gọi từ Unity Event (ví dụ OnReturn của ItemController)
+    public void WinGame()
+    {
+        if (isGameEnded) return;
+
+        isGameEnded = true;
+        isTimerRunning = false;
+
+        if (winCanvas != null) winCanvas.SetActive(true);
+        
+        onWinGame?.Invoke();
+    }
+
     public void LoseGame()
     {
+        if (isGameEnded) return;
+
         isGameEnded = true;
+        isTimerRunning = false;
+
+        if (loseCanvas != null) loseCanvas.SetActive(true);
         
-        // Kích hoạt các hàm (Bật UI Thua, Phát âm thanh...) mà bạn kéo thả trên Inspector
         onLoseGame?.Invoke();
     }
 }

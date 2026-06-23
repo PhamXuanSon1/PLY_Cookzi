@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 using System.Collections.Generic;
 
 public class UnlockCondition : MonoBehaviour
 {
     [Tooltip("Số lượng nhiệm vụ/đồ vật cần hoàn thành trước khi mở khóa")]
     public int conditionsToMeet = 3;
+
+    [Tooltip("Thời gian chờ (giây) trước khi thực sự mở khóa (tính từ lúc chơi xong món cuối cùng)")]
+    public float delayBeforeUnlock = 0f;
     
     private int currentProgress = 0;
     private bool isUnlocked = false;
@@ -33,8 +37,22 @@ public class UnlockCondition : MonoBehaviour
         if (currentProgress >= conditionsToMeet)
         {
             isUnlocked = true;
-            UnlockNow();
+            
+            if (delayBeforeUnlock > 0f)
+            {
+                StartCoroutine(WaitAndUnlock());
+            }
+            else
+            {
+                UnlockNow();
+            }
         }
+    }
+
+    private IEnumerator WaitAndUnlock()
+    {
+        yield return new WaitForSeconds(delayBeforeUnlock);
+        UnlockNow();
     }
 
     private void UnlockNow()

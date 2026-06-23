@@ -43,6 +43,30 @@ public class TongItem : ItemController
     // Khóa kẹp tạm thời trong lúc vật đang bay/xoay để tránh lỗi
     private float actionLockTime = 0f;
 
+    /// <summary>
+    /// Hàm dành cho Hand Hint để biết Kẹp đang cần bay tới đâu (Đồ ăn hay Rổ)
+    /// </summary>
+    public Transform GetHintTarget()
+    {
+        if (currentHeldItem != null)
+        {
+            return dropTarget;
+        }
+
+        for (int i = 0; i < requiredPickables.Count; i++)
+        {
+            if (requiredPickables[i] != null && requiredPickables[i].activeInHierarchy)
+            {
+                Collider col = requiredPickables[i].GetComponent<Collider>();
+                if (col != null && col.enabled)
+                {
+                    return requiredPickables[i].transform;
+                }
+            }
+        }
+        return null;
+    }
+
     private void Start()
     {
         // Mặc định đối với cái Kẹp (Tong), khi hoàn thành nhiệm vụ gắp xong thì KHÔNG ẩn cái kẹp đi

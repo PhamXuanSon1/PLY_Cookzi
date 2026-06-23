@@ -48,8 +48,10 @@ public class CuttingSetup : MonoBehaviour
         knifeProcessor.moveEndPos = knifeEndPos;
         knifeProcessor.ResetProcess();
 
-        // TỰ ĐỘNG BẬT DAO 2 LÊN
+        // TỰ ĐỘNG BẬT DAO VÀ COLLIDER
         knifeProcessor.gameObject.SetActive(true);
+        Collider col = knifeProcessor.GetComponent<Collider>();
+        if (col != null) col.enabled = true;
 
         // Đăng ký listener mới: Khi dao chém xong sẽ gọi event riêng của nguyên liệu này
         knifeProcessor.onCompleted.AddListener(FireCuttingCompleted);

@@ -14,6 +14,7 @@ public class ItemGraphic : MonoBehaviour
     public float rotationDuration = 0.2f;
 
     private Quaternion originRotation;
+    private bool isLayerIncreased = false;
 
     // lấy tất cả SpriteRenderer của nó và con của đối tượng này và lưu vào danh sách
     void Start()
@@ -31,6 +32,9 @@ public class ItemGraphic : MonoBehaviour
     // tăng tất cả order in layer của tất cả SpriteRenderer lên và xoay
     public void SetSortingLayerToTop()
     {
+        if (isLayerIncreased) return;
+        isLayerIncreased = true;
+
         int offset = InputManager.Instance != null ? InputManager.Instance.dragSortingOffset : 100;
         for(int i = 0; i < spriteRenderers.Count; i++)
         {
@@ -48,6 +52,9 @@ public class ItemGraphic : MonoBehaviour
     // trả về order in layer ban đầu và trả về góc xoay cũ
     public void ResetSortingLayer(int customRestore = -1)
     {
+        if (!isLayerIncreased) return;
+        isLayerIncreased = false;
+
         int offset = customRestore >= 0 ? customRestore : (InputManager.Instance != null ? InputManager.Instance.dragSortingOffset : 100);
         for (int i = 0; i < spriteRenderers.Count; i++)
         {

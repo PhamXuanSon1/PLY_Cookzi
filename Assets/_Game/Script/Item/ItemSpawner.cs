@@ -88,6 +88,13 @@ public class ItemSpawner : MonoBehaviour
             currentSpawnCount++;
             onSpawn?.Invoke();
 
+            // Nếu đã hết lượt, tắt Collider để HandHint biết là đã làm xong
+            if (currentSpawnCount >= maxSpawnCount)
+            {
+                Collider col = GetComponent<Collider>();
+                if (col != null) col.enabled = false;
+            }
+
             // Ép hệ thống chuyển quyền điều khiển chuột sang cho cái lá vừa sinh ra
             if (autoStartDrag && InputManager.Instance != null)
             {
@@ -104,6 +111,10 @@ public class ItemSpawner : MonoBehaviour
         if (currentSpawnCount > 0)
         {
             currentSpawnCount--;
+
+            // Bật lại Collider nếu có lượt
+            Collider col = GetComponent<Collider>();
+            if (col != null) col.enabled = true;
         }
     }
 }

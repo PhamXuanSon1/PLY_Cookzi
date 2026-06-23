@@ -36,6 +36,13 @@ public class ItemController : MonoBehaviour
     [Tooltip("Đánh dấu nếu đây là Công Cụ (như Dao). Công cụ chỉ có thể thả vào Thớt khi Thớt ĐÃ CÓ nguyên liệu nằm trên đó.")]
     public bool isTool = false;
 
+    [Header("Custom Drag Bounds (Tùy chọn)")]
+    [Tooltip("Nếu kéo BoxCollider vào đây, vật phẩm này CHỈ có thể kéo thả trong giới hạn của Box này (Ghi đè giới hạn chung của InputManager).")]
+    public BoxCollider customDragBounds;
+
+    [Tooltip("Khi kéo thả, có tự động nổi hình ảnh lên trên cùng không? (Tắt đi nếu không muốn hình ảnh bị nhảy đè lên các vật khác)")]
+    public bool increaseSortingLayerOnDrag = true;
+
     [Header("Khóa Item (Condition)")]
     [Tooltip("Nếu bật (True), người chơi không thể kéo hoặc click item này cho đến khi nó được Unlock()")]
     public bool isLocked = false;
@@ -133,9 +140,9 @@ public class ItemController : MonoBehaviour
         // Các logic hoàn thành Game chỉ chạy ở lần click cuối cùng
         if (isLastAnim)
         {
-            if (HandHintMmanager.Instance != null)
+            if (HandHintManager.Instance != null)
             {
-                HandHintMmanager.Instance.OnItemCompleted(this, maxDuration);
+                HandHintManager.Instance.OnItemCompleted(this, maxDuration);
             }
 
             if (ItemManager.Instance != null)
@@ -242,10 +249,18 @@ public class ItemController : MonoBehaviour
 
     private void HideSprite()
     {
+        // Tắt SpriteRenderer
         SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>(true);
         foreach (var sr in srs)
         {
             if (sr != null) sr.enabled = false;
+        }
+
+        // Tắt luôn Animator (Vì nếu Animator đang chạy animation nhàn rỗi, nó sẽ tự bật lại SpriteRenderer)
+        Animator[] anims = GetComponentsInChildren<Animator>(true);
+        foreach (var anim in anims)
+        {
+            if (anim != null) anim.enabled = false;
         }
     }
 }

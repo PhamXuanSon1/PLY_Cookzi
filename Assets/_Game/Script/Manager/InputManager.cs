@@ -64,9 +64,9 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
         {
-            if (HandHintMmanager.Instance != null)
+            if (HandHintManager.Instance != null)
             {
-                HandHintMmanager.Instance.HideAndResetTimer();
+                HandHintManager.Instance.HideAndResetTimer();
             }
         }
 
@@ -150,7 +150,16 @@ public class InputManager : MonoBehaviour
             ItemGraphic itemGraphic = draggedObject.GetComponent<ItemGraphic>();
             if (itemGraphic != null)
             {
-                if (itemController == null || itemController.itemType != ItemType.SwipeInPlace)
+                bool shouldIncrease = true;
+                if (itemController != null)
+                {
+                    if (itemController.itemType == ItemType.SwipeInPlace || !itemController.increaseSortingLayerOnDrag)
+                    {
+                        shouldIncrease = false;
+                    }
+                }
+
+                if (shouldIncrease)
                 {
                     itemGraphic.SetSortingLayerToTop();
                 }
@@ -193,10 +202,21 @@ public class InputManager : MonoBehaviour
             Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, dragDepth));
             Vector3 targetPos = mouseWorldPos + offset;
 
-            // Nếu có cài đặt khung giới hạn, ép vị trí Item phải nằm trong khung đó
-            if (useDragBounds && dragBounds != null)
+            // Xác định xem dùng giới hạn riêng của vật phẩm hay giới hạn chung
+            BoxCollider currentBounds = null;
+            if (itemController != null && itemController.customDragBounds != null)
             {
-                Bounds b = dragBounds.bounds;
+                currentBounds = itemController.customDragBounds;
+            }
+            else if (useDragBounds && dragBounds != null)
+            {
+                currentBounds = dragBounds;
+            }
+
+            // Nếu có cài đặt khung giới hạn, ép vị trí Item phải nằm trong khung đó
+            if (currentBounds != null)
+            {
+                Bounds b = currentBounds.bounds;
                 targetPos.x = Mathf.Clamp(targetPos.x, b.min.x, b.max.x);
                 targetPos.y = Mathf.Clamp(targetPos.y, b.min.y, b.max.y);
             }
@@ -212,9 +232,23 @@ public class InputManager : MonoBehaviour
         mouseDownPos = Input.mousePosition;
 
         ItemGraphic itemGraphic = draggedObject.GetComponent<ItemGraphic>();
+        ItemController itemCtrl = draggedObject.GetComponent<ItemController>();
+
         if (itemGraphic != null)
         {
-            itemGraphic.SetSortingLayerToTop();
+            bool shouldIncrease = true;
+            if (itemCtrl != null)
+            {
+                if (itemCtrl.itemType == ItemType.SwipeInPlace || !itemCtrl.increaseSortingLayerOnDrag)
+                {
+                    shouldIncrease = false;
+                }
+            }
+
+            if (shouldIncrease)
+            {
+                itemGraphic.SetSortingLayerToTop();
+            }
         }
 
         ItemMovement itemMovement = draggedObject.GetComponent<ItemMovement>();
@@ -223,7 +257,6 @@ public class InputManager : MonoBehaviour
             itemMovement.UpdateSpawnPos();
         }
 
-        ItemController itemCtrl = draggedObject.GetComponent<ItemController>();
         if (itemCtrl != null)
         {
             itemCtrl.onDragStart?.Invoke();
@@ -321,6 +354,12 @@ public class InputManager : MonoBehaviour
                 {
                     itemMovement.ReturnToSpawn();
                 }
+                else
+                {
+                    // Nếu không có script tự bay về thì phải tự reset layer ngay lập tức
+                    if (itemGraphic != null) itemGraphic.ResetSortingLayer();
+                }
+                
                 if (itemController != null)
                 {
                     itemController.onReturn?.Invoke();

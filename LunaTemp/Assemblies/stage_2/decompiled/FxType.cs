@@ -1,0 +1,21 @@
+public enum FxType
+{
+	None,
+	Click,
+	StartVoice,
+	voice_lv52_bottle,
+	voice_lv52_fruit,
+	voice_lv52_icecup,
+	voice_lv52_icream,
+	voice_lv52_ladle,
+	voice_lv52_milk,
+	voice_lv52_shirt,
+	voice_lv52_tofu,
+	voice_lv52_water,
+	Correct,
+	FridgeOpen,
+	water,
+	mouse,
+	wrong,
+	haa
+}
