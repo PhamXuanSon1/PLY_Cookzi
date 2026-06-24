@@ -1784,10 +1784,6 @@
                 "excluded": true
             },
             {
-                "name": "UnityEngine.RequireComponent",
-                "excluded": true
-            },
-            {
                 "name": "UnityEngine.RootMotionData",
                 "excluded": true
             },
@@ -17193,7 +17189,7 @@
                     },
                     {
                         "name": "IsChildOf",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "InverseTransformPoint",
@@ -22879,7 +22875,7 @@
                     },
                     {
                         "name": "PlayBGM1",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "PlayBGM2",
@@ -22896,6 +22892,10 @@
                     {
                         "name": "Mute",
                         "excluded": true
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
                     }
                 ]
             },
@@ -23439,11 +23439,11 @@
                     },
                     {
                         "name": "RaycastAll$1",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "RaycastAll$2",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "RaycastNonAlloc$2",
@@ -26447,7 +26447,7 @@
                 "instanceMethods": [
                     {
                         "name": "size#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "size#set",
@@ -26455,7 +26455,7 @@
                     },
                     {
                         "name": "center#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "center#set",
@@ -33185,7 +33185,7 @@
                     },
                     {
                         "name": "$clone",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -33939,7 +33939,7 @@
                     },
                     {
                         "name": "RaycastAll",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "RaycastNonAlloc",
@@ -35007,6 +35007,24 @@
                     },
                     {
                         "name": "Simulate",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "UnityEngine.RequireComponent",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "$ctor1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "$ctor2",
                         "excluded": true
                     }
                 ]

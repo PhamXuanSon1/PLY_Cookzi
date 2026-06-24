@@ -14,6 +14,9 @@ public class HandHintManager : MonoBehaviour
 
 	public Animator handAnimator;
 
+	[Tooltip("Object mũi tên 2 chiều sẽ hiện lên khi gặp các đồ vật dạng quẹt (Swipe/Chà xát)")]
+	public GameObject swipeArrow;
+
 	public float idleTimeToHint = 5f;
 
 	public float dragAnimDuration = 1.5f;
@@ -131,6 +134,10 @@ public class HandHintManager : MonoBehaviour
 	{
 		currentDragTween?.Kill();
 		currentDragTween = null;
+		if (swipeArrow != null)
+		{
+			swipeArrow.SetActive(false);
+		}
 		if (handHintObject != null)
 		{
 			handHintObject.transform.DOKill();
@@ -197,12 +204,22 @@ public class HandHintManager : MonoBehaviour
 			if (dragBounds != null && dragBounds.leftPoint != null && dragBounds.rightPoint != null)
 			{
 				handHintObject.transform.position = dragBounds.leftPoint.position;
+				if (swipeArrow != null)
+				{
+					swipeArrow.SetActive(true);
+					swipeArrow.transform.position = (dragBounds.leftPoint.position + dragBounds.rightPoint.position) / 2f;
+				}
 				currentDragTween = handHintObject.transform.DOMove(dragBounds.rightPoint.position, dragAnimDuration * 0.5f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
 				return;
 			}
 			if (currentItem.itemType == ItemType.SwipeInPlace)
 			{
 				handHintObject.transform.position = currentItem.transform.position + Vector3.left * 0.5f;
+				if (swipeArrow != null)
+				{
+					swipeArrow.SetActive(true);
+					swipeArrow.transform.position = currentItem.transform.position;
+				}
 				currentDragTween = handHintObject.transform.DOMove(currentItem.transform.position + Vector3.right * 0.5f, dragAnimDuration * 0.5f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
 				return;
 			}
@@ -242,6 +259,10 @@ public class HandHintManager : MonoBehaviour
 	{
 		currentDragTween?.Kill();
 		currentDragTween = null;
+		if (swipeArrow != null)
+		{
+			swipeArrow.SetActive(false);
+		}
 		if (handHintObject != null)
 		{
 			handHintObject.transform.DOKill();

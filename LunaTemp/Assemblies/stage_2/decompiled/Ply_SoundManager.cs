@@ -10,6 +10,11 @@ public class Ply_SoundManager : Ply_Singleton<Ply_SoundManager>
 
 	private bool isMute = false;
 
+	private void Start()
+	{
+		PlayBGM1();
+	}
+
 	public void PlayFx(FxType fxType)
 	{
 		if (isMute)

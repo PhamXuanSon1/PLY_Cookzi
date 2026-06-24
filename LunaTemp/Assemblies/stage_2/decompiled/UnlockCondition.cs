@@ -60,6 +60,11 @@ public class UnlockCondition : MonoBehaviour
 			if (col != null)
 			{
 				col.enabled = true;
+				if (col.gameObject.activeSelf)
+				{
+					col.gameObject.SetActive(false);
+					col.gameObject.SetActive(true);
+				}
 			}
 		}
 		foreach (GameObject obj in objectsToEnable)

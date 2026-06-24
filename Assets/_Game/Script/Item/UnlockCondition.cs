@@ -60,7 +60,17 @@ public class UnlockCondition : MonoBehaviour
         // Bật các Collider đang bị tắt
         foreach (Collider col in collidersToEnable)
         {
-            if (col != null) col.enabled = true;
+            if (col != null) 
+            {
+                col.enabled = true;
+                
+                // Hack cho Luna: Tắt bật lại GameObject để force Luna cập nhật lại Physics
+                if (col.gameObject.activeSelf)
+                {
+                    col.gameObject.SetActive(false);
+                    col.gameObject.SetActive(true);
+                }
+            }
         }
 
         // Bật các GameObject đang bị ẩn

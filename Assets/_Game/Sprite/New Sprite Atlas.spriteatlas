@@ -134,6 +134,7 @@ SpriteAtlas:
     - 3db696475b33510419d2de1f96da2d25: 21300000
     - 9936b0774389d7a4796f6b5ee3df5e9b: 21300000
     - 83631e97b2f5bfc4084e3a0285f7e392: 21300000
+    - 24a1eaf7778954b42b3446812b4a74a0: 21300000
     - 42d63508354d3b9468130ce1607ee619: 21300000
     - 801d90282032da94c8a0a595be1c45af: 21300000
     - 5d9b0428a142a3f4eac6362adb6c86c7: 21300000
@@ -144,6 +145,7 @@ SpriteAtlas:
     - 104eb888ab3590e45bbb958640538a61: 21300000
     - 51c125a8a84f32248a6e5fc7e31d8752: 21300000
     - ee757ba8e006c9a4c9c408c94573aa11: 21300000
+    - e346cfa84244ace49a16dd8a012a0be3: 21300000
     - 0386b2b8ef2582846a75241a7d9f6bbd: 21300000
     - a71437c8113c0e0449e32b83eb3ad62d: 21300000
     - 18a92a2912f90164bb18368bfbcc3b11: 21300000
@@ -329,6 +331,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3db696475b33510419d2de1f96da2d25, type: 3}
   - {fileID: 21300000, guid: 9936b0774389d7a4796f6b5ee3df5e9b, type: 3}
   - {fileID: 21300000, guid: 83631e97b2f5bfc4084e3a0285f7e392, type: 3}
+  - {fileID: 21300000, guid: 24a1eaf7778954b42b3446812b4a74a0, type: 3}
   - {fileID: 21300000, guid: 42d63508354d3b9468130ce1607ee619, type: 3}
   - {fileID: 21300000, guid: 801d90282032da94c8a0a595be1c45af, type: 3}
   - {fileID: 21300000, guid: 5d9b0428a142a3f4eac6362adb6c86c7, type: 3}
@@ -339,6 +342,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 104eb888ab3590e45bbb958640538a61, type: 3}
   - {fileID: 21300000, guid: 51c125a8a84f32248a6e5fc7e31d8752, type: 3}
   - {fileID: 21300000, guid: ee757ba8e006c9a4c9c408c94573aa11, type: 3}
+  - {fileID: 21300000, guid: e346cfa84244ace49a16dd8a012a0be3, type: 3}
   - {fileID: 21300000, guid: 0386b2b8ef2582846a75241a7d9f6bbd, type: 3}
   - {fileID: 21300000, guid: a71437c8113c0e0449e32b83eb3ad62d, type: 3}
   - {fileID: 21300000, guid: 18a92a2912f90164bb18368bfbcc3b11, type: 3}
@@ -523,6 +527,7 @@ SpriteAtlas:
   - TongsFront
   - bee pupae 3
   - Gasstove 1
+  - Cookzii
   - branch2
   - lemonleave2
   - dry
@@ -533,6 +538,7 @@ SpriteAtlas:
   - DropWaterFr4
   - lemon leaves3
   - fried_lemonleave1
+  - ArrowBlueFr1_1
   - DropWaterFr6
   - Salt2
   - OilBotle3

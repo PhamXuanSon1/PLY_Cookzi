@@ -96,24 +96,40 @@ public class SwipeToProcessItem : MonoBehaviour
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			mousePos.z = 0f;
 			bool isHit = false;
-			RaycastHit2D hit2D = Physics2D.Raycast(mousePos, Vector2.zero);
-			if (hit2D.collider != null && hit2D.collider.gameObject == base.gameObject)
-			{
-				isHit = true;
-			}
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if (Physics.Raycast(ray, out var hit3D) && hit3D.collider != null && hit3D.collider.gameObject == base.gameObject)
+			if (Physics.Raycast(ray, out var hit3D))
 			{
-				isHit = true;
-			}
-			if (isHit && currentFlips < requiredFlips)
-			{
-				isDragging = true;
-				lastWorldPos = mousePos;
-				onBeginSwipe?.Invoke();
-				if (itemController != null && itemController.sequenceLoopSound != 0 && Ply_Singleton<Ply_SoundManager>.Ins != null)
+				Debug.Log("[SwipeToProcessItem] Clicked, Raycast hit: " + hit3D.collider.gameObject.name);
+				if (hit3D.collider != null && (hit3D.collider.gameObject == base.gameObject || hit3D.collider.transform.IsChildOf(base.transform)))
 				{
-					Ply_Singleton<Ply_SoundManager>.Ins.PlayLoopFx(itemController.sequenceLoopSound);
+					isHit = true;
+					Debug.Log("[SwipeToProcessItem] isHit = true for " + base.gameObject.name);
+				}
+				else
+				{
+					Debug.Log("[SwipeToProcessItem] isHit = false. hit != gameObject (" + base.gameObject.name + ")");
+				}
+			}
+			else
+			{
+				Debug.Log("[SwipeToProcessItem] Clicked but Raycast missed everything.");
+			}
+			if (isHit)
+			{
+				if (currentFlips < requiredFlips)
+				{
+					Debug.Log("[SwipeToProcessItem] Start Dragging " + base.gameObject.name);
+					isDragging = true;
+					lastWorldPos = mousePos;
+					onBeginSwipe?.Invoke();
+					if (itemController != null && itemController.sequenceLoopSound != 0 && Ply_Singleton<Ply_SoundManager>.Ins != null)
+					{
+						Ply_Singleton<Ply_SoundManager>.Ins.PlayLoopFx(itemController.sequenceLoopSound);
+					}
+				}
+				else
+				{
+					Debug.Log("[SwipeToProcessItem] currentFlips >= requiredFlips. Ignore swipe.");
 				}
 			}
 		}
@@ -139,6 +155,7 @@ public class SwipeToProcessItem : MonoBehaviour
 			lastWorldPos = currentWorldPos;
 			if (currentSwipeDistance >= swipeDistanceRequired)
 			{
+				Debug.Log($"[SwipeToProcessItem] {base.gameObject.name} flipped! Current flips: {currentFlips + 1}");
 				currentSwipeDistance = 0f;
 				currentFlips++;
 				isShowingSideA = !isShowingSideA;
@@ -153,6 +170,7 @@ public class SwipeToProcessItem : MonoBehaviour
 				onSingleFlip?.Invoke();
 				if (currentFlips >= requiredFlips)
 				{
+					Debug.Log("[SwipeToProcessItem] " + base.gameObject.name + " fully completed!");
 					onCompleted?.Invoke();
 				}
 			}

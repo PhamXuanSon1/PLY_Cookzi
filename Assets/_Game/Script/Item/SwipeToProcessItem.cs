@@ -90,21 +90,35 @@ public class SwipeToProcessItem : MonoBehaviour
             
             bool isHit = false;
 
-            // Kiểm tra Collider 2D
-            RaycastHit2D hit2D = Physics2D.Raycast(mousePos, Vector2.zero);
-            if (hit2D.collider != null && hit2D.collider.gameObject == gameObject) isHit = true;
-            
-            // Kiểm tra Collider 3D (do bạn đang dùng Box Collider thường)
+            // Kiểm tra Collider 3D (do dự án dùng 3D Box Collider)
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
+            // Dùng RaycastAll có thể gây lỗi trên một số phiên bản Luna, nên ta quay về Raycast thường
+            // Hoặc có thể dùng Raycast với LayerMask để đảm bảo chỉ hit đúng Item.
+            // Tạm thời ta dùng Raycast thường, nếu vật bị che khuất thì tính sau.
             if (Physics.Raycast(ray, out RaycastHit hit3D))
             {
-                if (hit3D.collider != null && hit3D.collider.gameObject == gameObject) isHit = true;
+                Debug.Log($"[SwipeToProcessItem] Clicked, Raycast hit: {hit3D.collider.gameObject.name}");
+                if (hit3D.collider != null && (hit3D.collider.gameObject == gameObject || hit3D.collider.transform.IsChildOf(transform)))
+                {
+                    isHit = true;
+                    Debug.Log($"[SwipeToProcessItem] isHit = true for {gameObject.name}");
+                }
+                else
+                {
+                    Debug.Log($"[SwipeToProcessItem] isHit = false. hit != gameObject ({gameObject.name})");
+                }
+            }
+            else
+            {
+                Debug.Log($"[SwipeToProcessItem] Clicked but Raycast missed everything.");
             }
 
             if (isHit)
             {
                 if (currentFlips < requiredFlips)
                 {
+                    Debug.Log($"[SwipeToProcessItem] Start Dragging {gameObject.name}");
                     isDragging = true;
                     lastWorldPos = mousePos;
                     onBeginSwipe?.Invoke();
@@ -113,6 +127,10 @@ public class SwipeToProcessItem : MonoBehaviour
                     {
                         Ply_SoundManager.Ins.PlayLoopFx(itemController.sequenceLoopSound);
                     }
+                }
+                else
+                {
+                    Debug.Log($"[SwipeToProcessItem] currentFlips >= requiredFlips. Ignore swipe.");
                 }
             }
         }
@@ -151,6 +169,7 @@ public class SwipeToProcessItem : MonoBehaviour
 
             if (currentSwipeDistance >= swipeDistanceRequired)
             {
+                Debug.Log($"[SwipeToProcessItem] {gameObject.name} flipped! Current flips: {currentFlips + 1}");
                 currentSwipeDistance = 0f;
                 currentFlips++;
                 
@@ -163,6 +182,7 @@ public class SwipeToProcessItem : MonoBehaviour
 
                 if (currentFlips >= requiredFlips)
                 {
+                    Debug.Log($"[SwipeToProcessItem] {gameObject.name} fully completed!");
                     onCompleted?.Invoke();
                 }
             }
