@@ -4,8 +4,6 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-	public FxType fxStartVoice = FxType.StartVoice;
-
 	public static GameManager Instance;
 
 	[Header("UI Canvas")]

@@ -80,40 +80,32 @@ public class Ply_SoundManager : Ply_Singleton<Ply_SoundManager>
 		{
 		case FxType.None:
 			return fxAudio.None;
-		case FxType.Click:
-			return fxAudio.ClickBox;
-		case FxType.StartVoice:
-			return fxAudio.StartVoice;
-		case FxType.voice_lv52_bottle:
-			return fxAudio.voice_lv52_bottle;
-		case FxType.voice_lv52_fruit:
-			return fxAudio.voice_lv52_fruit;
-		case FxType.voice_lv52_icecup:
-			return fxAudio.voice_lv52_icecup;
-		case FxType.voice_lv52_icream:
-			return fxAudio.voice_lv52_icream;
-		case FxType.voice_lv52_ladle:
-			return fxAudio.voice_lv52_ladle;
-		case FxType.voice_lv52_milk:
-			return fxAudio.voice_lv52_milk;
-		case FxType.voice_lv52_shirt:
-			return fxAudio.voice_lv52_shirt;
-		case FxType.voice_lv52_tofu:
-			return fxAudio.voice_lv52_tofu;
-		case FxType.voice_lv52_water:
-			return fxAudio.voice_lv52_water;
-		case FxType.Correct:
-			return fxAudio.Correct;
-		case FxType.FridgeOpen:
-			return fxAudio.FridgeOpen;
-		case FxType.water:
-			return fxAudio.water;
-		case FxType.mouse:
-			return fxAudio.mouse;
-		case FxType.wrong:
-			return fxAudio.wrong;
-		case FxType.haa:
-			return fxAudio.haa;
+		case FxType.PickableItemPickSound:
+			return fxAudio.PickableItemPickSound;
+		case FxType.PickableItemDropSound:
+			return fxAudio.PickableItemDropSound;
+		case FxType.WaterBottle:
+			return fxAudio.WaterBottle;
+		case FxType.WaterDrop:
+			return fxAudio.WaterDrop;
+		case FxType.GasClick:
+			return fxAudio.GasClick;
+		case FxType.Heart:
+			return fxAudio.Heart;
+		case FxType.Boil:
+			return fxAudio.Boil;
+		case FxType.Put2:
+			return fxAudio.Put2;
+		case FxType.Knife:
+			return fxAudio.Knife;
+		case FxType.Cutting:
+			return fxAudio.Cutting;
+		case FxType.KnifeWing:
+			return fxAudio.KnifeWing;
+		case FxType.SaltDrop:
+			return fxAudio.SaltDrop;
+		case FxType.Cookin_Pan_Fryin_003_01:
+			return fxAudio.Cookin_Pan_Fryin_003_01;
 		default:
 			return null;
 		}

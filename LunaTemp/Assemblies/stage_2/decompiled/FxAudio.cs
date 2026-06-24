@@ -5,37 +5,29 @@ public class FxAudio
 {
 	public SoundData None;
 
-	public SoundData ClickBox;
+	public SoundData PickableItemPickSound;
 
-	public SoundData StartVoice;
+	public SoundData PickableItemDropSound;
 
-	public SoundData voice_lv52_bottle;
+	public SoundData WaterBottle;
 
-	public SoundData voice_lv52_fruit;
+	public SoundData WaterDrop;
 
-	public SoundData voice_lv52_icecup;
+	public SoundData GasClick;
 
-	public SoundData voice_lv52_icream;
+	public SoundData Heart;
 
-	public SoundData voice_lv52_ladle;
+	public SoundData Boil;
 
-	public SoundData voice_lv52_milk;
+	public SoundData Put2;
 
-	public SoundData voice_lv52_shirt;
+	public SoundData Knife;
 
-	public SoundData voice_lv52_tofu;
+	public SoundData Cutting;
 
-	public SoundData voice_lv52_water;
+	public SoundData KnifeWing;
 
-	public SoundData Correct;
+	public SoundData SaltDrop;
 
-	public SoundData FridgeOpen;
-
-	public SoundData water;
-
-	public SoundData mouse;
-
-	public SoundData wrong;
-
-	public SoundData haa;
+	public SoundData Cookin_Pan_Fryin_003_01;
 }

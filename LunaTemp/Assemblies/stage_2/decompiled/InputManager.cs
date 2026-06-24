@@ -122,14 +122,14 @@ public class InputManager : MonoBehaviour
 		{
 			return;
 		}
-		if (Ply_Singleton<Ply_SoundManager>.Ins != null)
-		{
-			Ply_Singleton<Ply_SoundManager>.Ins.PlayFx(FxType.Click);
-		}
 		mouseDownPos = Input.mousePosition;
 		ItemController itemController = hit.transform.GetComponent<ItemController>();
 		if (itemController != null)
 		{
+			if (itemController.interactSound != 0 && Ply_Singleton<Ply_SoundManager>.Ins != null)
+			{
+				Ply_Singleton<Ply_SoundManager>.Ins.PlayFx(itemController.interactSound);
+			}
 			if (itemController.itemType == ItemType.Pickable)
 			{
 				return;
@@ -204,6 +204,10 @@ public class InputManager : MonoBehaviour
 		mouseDownPos = Input.mousePosition;
 		ItemGraphic itemGraphic = draggedObject.GetComponent<ItemGraphic>();
 		ItemController itemCtrl = draggedObject.GetComponent<ItemController>();
+		if (itemCtrl != null && itemCtrl.interactSound != 0 && Ply_Singleton<Ply_SoundManager>.Ins != null)
+		{
+			Ply_Singleton<Ply_SoundManager>.Ins.PlayFx(itemCtrl.interactSound);
+		}
 		if (itemGraphic != null)
 		{
 			bool shouldIncrease = true;

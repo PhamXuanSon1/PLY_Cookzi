@@ -129,28 +129,66 @@ public class HandHintManager : MonoBehaviour
 
 	private void ShowHandHintForCurrentItem()
 	{
-		handHintObject.SetActive(true);
 		currentDragTween?.Kill();
+		currentDragTween = null;
+		if (handHintObject != null)
+		{
+			handHintObject.transform.DOKill();
+			handHintObject.SetActive(true);
+		}
+		if (handAnimator != null)
+		{
+			handAnimator.Rebind();
+			handAnimator.Update(0f);
+		}
 		ItemController currentItem = GetNextActiveItem();
 		if (currentItem != null)
 		{
 			if (currentItem is TongItem tongItem)
 			{
+				Debug.Log("[HandHint] Enter TongItem hint logic! currentItem: " + tongItem.name);
 				handHintObject.transform.position = currentItem.transform.position;
-				Transform target = tongItem.GetHintTarget();
-				if (target != null)
+				if (tongItem.IsHoldingItem)
 				{
-					if (target != tongItem.dropTarget && tongItem.dropTarget != null)
+					Transform target = tongItem.dropTarget;
+					if (target == null && tongItem.CurrentHeldItem != null)
+					{
+						ItemController heldCtrl = tongItem.CurrentHeldItem.GetComponent<ItemController>();
+						if (heldCtrl != null)
+						{
+							target = heldCtrl.dropTarget;
+						}
+					}
+					if (target != null)
+					{
+						currentDragTween = handHintObject.transform.DOMove(target.position, dragAnimDuration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Restart);
+					}
+					return;
+				}
+				Transform target2 = tongItem.GetHintTarget();
+				if (target2 != null)
+				{
+					Transform finalDropTarget = tongItem.dropTarget;
+					ItemController foodItem = target2.GetComponent<ItemController>();
+					if (foodItem != null && foodItem.dropTarget != null)
+					{
+						finalDropTarget = foodItem.dropTarget;
+					}
+					if (finalDropTarget == target2)
+					{
+						finalDropTarget = tongItem.dropTarget;
+					}
+					if (finalDropTarget != null && finalDropTarget != target2)
 					{
 						Sequence seq = DOTween.Sequence();
-						seq.Append(handHintObject.transform.DOMove(target.position, dragAnimDuration * 0.5f).SetEase(Ease.InOutSine));
-						seq.Append(handHintObject.transform.DOMove(tongItem.dropTarget.position, dragAnimDuration * 0.5f).SetEase(Ease.InOutSine));
+						seq.Append(handHintObject.transform.DOMove(target2.position, dragAnimDuration * 0.5f).SetEase(Ease.InOutSine));
+						seq.Append(handHintObject.transform.DOMove(finalDropTarget.position, dragAnimDuration * 0.5f).SetEase(Ease.InOutSine));
 						seq.SetLoops(-1, LoopType.Restart);
 						currentDragTween = seq;
 					}
 					else
 					{
-						currentDragTween = handHintObject.transform.DOMove(target.position, dragAnimDuration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Restart);
+						currentDragTween = handHintObject.transform.DOMove(target2.position, dragAnimDuration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Restart);
 					}
 				}
 				return;
@@ -202,10 +240,12 @@ public class HandHintManager : MonoBehaviour
 
 	public void HideHandHint()
 	{
-		if (handHintObject != null && handHintObject.activeInHierarchy)
+		currentDragTween?.Kill();
+		currentDragTween = null;
+		if (handHintObject != null)
 		{
+			handHintObject.transform.DOKill();
 			handHintObject.SetActive(false);
-			currentDragTween?.Kill();
 		}
 	}
 

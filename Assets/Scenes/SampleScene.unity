@@ -25847,7 +25847,7 @@ MonoBehaviour:
     triggerName: 
   - animObj: {fileID: 767440541}
     delayFromStart: 1.2
-    durationToDeactivate: 1.5
+    durationToDeactivate: 0
     triggerName: Map1To2
   - animObj: {fileID: 824452371}
     delayFromStart: 2.7

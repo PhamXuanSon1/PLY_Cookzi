@@ -52,6 +52,13 @@ public class SwipeToProcessItem : MonoBehaviour
 
 	private Vector3 initialBarScale;
 
+	private ItemController itemController;
+
+	private void Awake()
+	{
+		itemController = GetComponent<ItemController>();
+	}
+
 	private void Start()
 	{
 		if (progressBarTransform != null)
@@ -67,6 +74,18 @@ public class SwipeToProcessItem : MonoBehaviour
 				scale.x = 0f;
 			}
 			progressBarTransform.localScale = scale;
+		}
+	}
+
+	private void OnDisable()
+	{
+		if (isDragging)
+		{
+			isDragging = false;
+			if (itemController != null && itemController.sequenceLoopSound != 0 && Ply_Singleton<Ply_SoundManager>.Ins != null)
+			{
+				Ply_Singleton<Ply_SoundManager>.Ins.StopFx(itemController.sequenceLoopSound);
+			}
 		}
 	}
 
@@ -92,12 +111,20 @@ public class SwipeToProcessItem : MonoBehaviour
 				isDragging = true;
 				lastWorldPos = mousePos;
 				onBeginSwipe?.Invoke();
+				if (itemController != null && itemController.sequenceLoopSound != 0 && Ply_Singleton<Ply_SoundManager>.Ins != null)
+				{
+					Ply_Singleton<Ply_SoundManager>.Ins.PlayLoopFx(itemController.sequenceLoopSound);
+				}
 			}
 		}
 		if (Input.GetMouseButtonUp(0) && isDragging)
 		{
 			isDragging = false;
 			onEndSwipe?.Invoke();
+			if (itemController != null && itemController.sequenceLoopSound != 0 && Ply_Singleton<Ply_SoundManager>.Ins != null)
+			{
+				Ply_Singleton<Ply_SoundManager>.Ins.StopFx(itemController.sequenceLoopSound);
+			}
 			if (currentFlips >= requiredFlips)
 			{
 				onCompletedAndReleased?.Invoke();

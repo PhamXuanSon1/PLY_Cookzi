@@ -34,6 +34,11 @@ public class TongItem : ItemController
 	[Tooltip("Order in Layer tuyệt đối sẽ được gán cho vật sau khi rớt vào rổ")]
 	public int finalSortingOrder = 61;
 
+	[Header("--- Audio Settings ---")]
+	public FxType pickSound = FxType.None;
+
+	public FxType dropIntoBasketSound = FxType.None;
+
 	[Header("--- Objective Settings ---")]
 	[Tooltip("Danh sách đồ ăn cần gắp. Khi gắp ĐỦ đồ ăn trong list này vào rổ, cái Kẹp sẽ tự động chạy Anim List và OnAnimFinished!")]
 	public List<GameObject> requiredPickables = new List<GameObject>();
@@ -43,6 +48,10 @@ public class TongItem : ItemController
 	private Collider currentHeldCollider;
 
 	private float actionLockTime = 0f;
+
+	public bool IsHoldingItem => currentHeldItem != null;
+
+	public Transform CurrentHeldItem => currentHeldItem;
 
 	public Transform GetHintTarget()
 	{
@@ -139,6 +148,10 @@ public class TongItem : ItemController
 	{
 		currentHeldItem = itemCollider.transform;
 		currentHeldCollider = itemCollider;
+		if (pickSound != 0 && Ply_Singleton<Ply_SoundManager>.Ins != null)
+		{
+			Ply_Singleton<Ply_SoundManager>.Ins.PlayFx(pickSound);
+		}
 		if (currentHeldCollider != null)
 		{
 			currentHeldCollider.enabled = false;
@@ -180,6 +193,10 @@ public class TongItem : ItemController
 			itemToDrop.SetParent(itemCtrl.dropTarget);
 			itemToDrop.DOLocalJump(Vector3.zero, jumpPower, 1, flyToBasketDuration).SetEase(Ease.OutQuad).OnComplete(delegate
 			{
+				if (dropIntoBasketSound != 0 && Ply_Singleton<Ply_SoundManager>.Ins != null)
+				{
+					Ply_Singleton<Ply_SoundManager>.Ins.PlayFx(dropIntoBasketSound);
+				}
 				if (graphic != null)
 				{
 					graphic.SetSortingLayerExact(finalSortingOrder);
@@ -199,6 +216,10 @@ public class TongItem : ItemController
 			Vector3 finalPos = itemToDrop.position;
 			itemToDrop.DOJump(finalPos, jumpPower, 1, flyToBasketDuration).SetEase(Ease.OutQuad).OnComplete(delegate
 			{
+				if (dropIntoBasketSound != 0 && Ply_Singleton<Ply_SoundManager>.Ins != null)
+				{
+					Ply_Singleton<Ply_SoundManager>.Ins.PlayFx(dropIntoBasketSound);
+				}
 				if (graphic != null)
 				{
 					graphic.SetSortingLayerExact(finalSortingOrder);

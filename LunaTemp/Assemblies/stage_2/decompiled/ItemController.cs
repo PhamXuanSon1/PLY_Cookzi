@@ -57,6 +57,12 @@ public class ItemController : MonoBehaviour
 	public List<AnimObjectData> animationObjects = new List<AnimObjectData>();
 
 	[Header("Audio")]
+	[Tooltip("Âm thanh phát ra khi người chơi bắt đầu Click hoặc Kéo vật phẩm này")]
+	public FxType interactSound = FxType.None;
+
+	[Tooltip("Âm thanh sẽ phát lặp đi lặp lại trong suốt quá trình Click tuần tự (từ lần click đầu tiên đến khi kết thúc)")]
+	public FxType sequenceLoopSound = FxType.None;
+
 	[Tooltip("Danh sách âm thanh FX sẽ phát NGAY LẬP TỨC khi chơi thành công")]
 	public List<FxType> fxSoundsStartAnim = new List<FxType>();
 
@@ -67,13 +73,20 @@ public class ItemController : MonoBehaviour
 	{
 		bool isLastAnim = true;
 		List<AnimObjectData> animsToPlay = animationObjects;
-		if (isSequentialClick && animationObjects.Count > 0 && currentClickIndex < animationObjects.Count)
+		if (isSequentialClick && animationObjects.Count > 0)
 		{
-			animsToPlay = new List<AnimObjectData> { animationObjects[currentClickIndex] };
-			currentClickIndex++;
+			if (currentClickIndex == 0 && sequenceLoopSound != 0 && Ply_Singleton<Ply_SoundManager>.Ins != null)
+			{
+				Ply_Singleton<Ply_SoundManager>.Ins.PlayLoopFx(sequenceLoopSound);
+			}
 			if (currentClickIndex < animationObjects.Count)
 			{
-				isLastAnim = false;
+				animsToPlay = new List<AnimObjectData> { animationObjects[currentClickIndex] };
+				currentClickIndex++;
+				if (currentClickIndex < animationObjects.Count)
+				{
+					isLastAnim = false;
+				}
 			}
 		}
 		if (Ply_Singleton<Ply_SoundManager>.Ins != null && fxSoundsStartAnim != null)
@@ -140,6 +153,10 @@ public class ItemController : MonoBehaviour
 		if (delay > 0f)
 		{
 			yield return new WaitForSeconds(delay);
+		}
+		if (sequenceLoopSound != 0 && Ply_Singleton<Ply_SoundManager>.Ins != null)
+		{
+			Ply_Singleton<Ply_SoundManager>.Ins.StopFx(sequenceLoopSound);
 		}
 		onAnimFinished?.Invoke();
 	}
