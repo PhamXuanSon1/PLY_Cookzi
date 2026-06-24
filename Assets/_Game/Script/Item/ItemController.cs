@@ -66,6 +66,12 @@ public class ItemController : MonoBehaviour
     public List<AnimObjectData> animationObjects = new List<AnimObjectData>();
 
     [Header("Audio")]
+    [Tooltip("Âm thanh phát ra khi người chơi bắt đầu Click hoặc Kéo vật phẩm này")]
+    public FxType interactSound = FxType.None;
+    
+    [Tooltip("Âm thanh sẽ phát lặp đi lặp lại trong suốt quá trình Click tuần tự (từ lần click đầu tiên đến khi kết thúc)")]
+    public FxType sequenceLoopSound = FxType.None;
+
     [Tooltip("Danh sách âm thanh FX sẽ phát NGAY LẬP TỨC khi chơi thành công")]
     public List<FxType> fxSoundsStartAnim = new List<FxType>();
     [Tooltip("Danh sách âm thanh sẽ phát sau khi TẤT CẢ animation chạy xong")]
@@ -79,6 +85,11 @@ public class ItemController : MonoBehaviour
         // Nếu bật chế độ tuần tự, chỉ lấy 1 anim tương ứng với số lần click hiện tại
         if (isSequentialClick && animationObjects.Count > 0)
         {
+            if (currentClickIndex == 0 && sequenceLoopSound != FxType.None && Ply_SoundManager.Ins != null)
+            {
+                Ply_SoundManager.Ins.PlayLoopFx(sequenceLoopSound);
+            }
+
             if (currentClickIndex < animationObjects.Count)
             {
                 animsToPlay = new List<AnimObjectData>() { animationObjects[currentClickIndex] };
@@ -165,6 +176,12 @@ public class ItemController : MonoBehaviour
         {
             yield return new WaitForSeconds(delay);
         }
+
+        if (sequenceLoopSound != FxType.None && Ply_SoundManager.Ins != null)
+        {
+            Ply_SoundManager.Ins.StopFx(sequenceLoopSound);
+        }
+
         onAnimFinished?.Invoke();
     }
 

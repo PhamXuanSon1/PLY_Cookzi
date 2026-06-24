@@ -32,6 +32,10 @@ public class TongItem : ItemController
     [Tooltip("Order in Layer tuyệt đối sẽ được gán cho vật sau khi rớt vào rổ")]
     public int finalSortingOrder = 61;
 
+    [Header("--- Audio Settings ---")]
+    public FxType pickSound = FxType.None;
+    public FxType dropIntoBasketSound = FxType.None;
+
     [Header("--- Objective Settings ---")]
     [Tooltip("Danh sách đồ ăn cần gắp. Khi gắp ĐỦ đồ ăn trong list này vào rổ, cái Kẹp sẽ tự động chạy Anim List và OnAnimFinished!")]
     public List<GameObject> requiredPickables = new List<GameObject>();
@@ -39,6 +43,9 @@ public class TongItem : ItemController
     // Biến lưu trữ vật đang được gắp
     private Transform currentHeldItem;
     private Collider currentHeldCollider;
+
+    public bool IsHoldingItem => currentHeldItem != null;
+    public Transform CurrentHeldItem => currentHeldItem;
 
     // Khóa kẹp tạm thời trong lúc vật đang bay/xoay để tránh lỗi
     private float actionLockTime = 0f;
@@ -143,6 +150,11 @@ public class TongItem : ItemController
         currentHeldItem = itemCollider.transform;
         currentHeldCollider = itemCollider;
 
+        if (pickSound != FxType.None && Ply_SoundManager.Ins != null)
+        {
+            Ply_SoundManager.Ins.PlayFx(pickSound);
+        }
+
         // Tắt collider của vật để tránh va chạm lung tung trong lúc đang di chuyển cùng kẹp
         if (currentHeldCollider != null)
         {
@@ -212,6 +224,11 @@ public class TongItem : ItemController
             // Dùng DOLocalJump về 0,0,0 để nhảy chính xác vào tâm Target, tự động bám theo Target dù rổ có di chuyển
             itemToDrop.DOLocalJump(Vector3.zero, jumpPower, 1, flyToBasketDuration).SetEase(Ease.OutQuad).OnComplete(() => 
             {
+                if (dropIntoBasketSound != FxType.None && Ply_SoundManager.Ins != null)
+                {
+                    Ply_SoundManager.Ins.PlayFx(dropIntoBasketSound);
+                }
+                
                 if (graphic != null) graphic.SetSortingLayerExact(finalSortingOrder);
                 if (isLastItem) 
                 {
@@ -226,6 +243,11 @@ public class TongItem : ItemController
             Vector3 finalPos = itemToDrop.position;
             itemToDrop.DOJump(finalPos, jumpPower, 1, flyToBasketDuration).SetEase(Ease.OutQuad).OnComplete(() => 
             {
+                if (dropIntoBasketSound != FxType.None && Ply_SoundManager.Ins != null)
+                {
+                    Ply_SoundManager.Ins.PlayFx(dropIntoBasketSound);
+                }
+
                 if (graphic != null) graphic.SetSortingLayerExact(finalSortingOrder);
                 if (isLastItem) 
                 {

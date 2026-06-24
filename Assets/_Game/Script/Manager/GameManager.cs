@@ -3,7 +3,7 @@ using Luna.Unity;
 
 public class GameManager : MonoBehaviour
 {
-    public FxType fxStartVoice = FxType.StartVoice;
+    // public FxType fxStartVoice = FxType.StartVoice;
     public static GameManager Instance;
 
     private void Awake()

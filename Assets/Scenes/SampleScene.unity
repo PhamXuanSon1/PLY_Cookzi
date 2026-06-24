@@ -512,6 +512,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &20604174
@@ -682,6 +684,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &25434935
@@ -885,6 +889,7 @@ GameObject:
   m_Component:
   - component: {fileID: 37915868}
   - component: {fileID: 37915869}
+  - component: {fileID: 37915870}
   m_Layer: 8
   m_Name: PepperFx
   m_TagString: Untagged
@@ -933,6 +938,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &37915870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37915867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 12
+  sound2: 0
+  sound3: 0
 --- !u!1 &43492091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,6 +1092,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &43492097
@@ -1361,10 +1383,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46851fbddd717114dae7f826491f7bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fxStartVoice: 2
   winCanvas: {fileID: 0}
   loseCanvas: {fileID: 1267218145}
-  timeLimit: 600
+  timeLimit: 60
   onWinGame:
     m_PersistentCalls:
       m_Calls: []
@@ -1565,6 +1586,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!65 &56540343
@@ -1995,6 +2018,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &65090914
@@ -2417,6 +2442,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!1 &90382462
@@ -3019,6 +3046,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &114331958
@@ -3404,6 +3433,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!95 &131881053
@@ -4101,6 +4132,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &159594894
@@ -4621,6 +4654,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &167973858
@@ -4878,6 +4913,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &186844396
@@ -5168,6 +5205,7 @@ GameObject:
   - component: {fileID: 208662386}
   - component: {fileID: 208662387}
   - component: {fileID: 208662388}
+  - component: {fileID: 208662389}
   m_Layer: 0
   m_Name: LeafLeafToPotMap5.1
   m_TagString: Untagged
@@ -5246,6 +5284,21 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   moveSequences: []
+--- !u!114 &208662389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208662385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 13
+  sound2: 0
+  sound3: 0
 --- !u!1 &219104618
 GameObject:
   m_ObjectHideFlags: 0
@@ -5485,6 +5538,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &228741981
@@ -5603,6 +5658,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 10
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &229728842
@@ -5702,6 +5759,7 @@ GameObject:
   - component: {fileID: 241964639}
   - component: {fileID: 241964641}
   - component: {fileID: 241964642}
+  - component: {fileID: 241964643}
   m_Layer: 8
   m_Name: FriedLemonLeaf
   m_TagString: Untagged
@@ -5797,6 +5855,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &241964639
@@ -5864,6 +5924,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.7293985, y: 1, z: 1}
   m_Center: {x: -0.004502654, y: 0, z: 0}
+--- !u!114 &241964643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241964635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 2
+  sound2: 0
+  sound3: 0
 --- !u!1 &244413965
 GameObject:
   m_ObjectHideFlags: 0
@@ -6373,6 +6448,7 @@ GameObject:
   - component: {fileID: 262306383}
   - component: {fileID: 262306385}
   - component: {fileID: 262306384}
+  - component: {fileID: 262306386}
   m_Layer: 8
   m_Name: Anim
   m_TagString: Untagged
@@ -6509,6 +6585,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &262306386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262306382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 2
+  sound2: 0
+  sound3: 0
 --- !u!1 &264763592
 GameObject:
   m_ObjectHideFlags: 0
@@ -8202,6 +8293,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!65 &382356626
@@ -8592,6 +8685,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 1
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!65 &393288539
@@ -8625,6 +8720,7 @@ GameObject:
   m_Component:
   - component: {fileID: 395987670}
   - component: {fileID: 395987671}
+  - component: {fileID: 395987672}
   m_Layer: 0
   m_Name: LemonFiber
   m_TagString: Untagged
@@ -8672,6 +8768,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &395987672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395987669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 2
+  sound2: 0
+  sound3: 0
 --- !u!1 &396095392
 GameObject:
   m_ObjectHideFlags: 0
@@ -8988,6 +9099,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 1
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!1 &413579647
@@ -10652,6 +10765,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &473953806
@@ -10874,6 +10989,93 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 4.25, y: 0.94}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!1 &485829730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 485829731}
+  - component: {fileID: 485829732}
+  m_Layer: 0
+  m_Name: Heart 1_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &485829731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485829730}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 664161296}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &485829732
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485829730}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 100
+  m_Sprite: {fileID: 21300000, guid: ece7e46de46a16b4da6d66869f5eec56, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.12, y: 5.53}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -12290,6 +12492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 559925724}
   - component: {fileID: 559925725}
+  - component: {fileID: 559925726}
   m_Layer: 0
   m_Name: FishSauce
   m_TagString: Untagged
@@ -12341,6 +12544,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &559925726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559925723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 3
+  sound2: 0
+  sound3: 0
 --- !u!1 &564549241
 GameObject:
   m_ObjectHideFlags: 0
@@ -12906,6 +13124,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0.6
     triggerName: 
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!1 &585043326
@@ -13006,6 +13226,7 @@ GameObject:
   - component: {fileID: 588427081}
   - component: {fileID: 588427082}
   - component: {fileID: 588427083}
+  - component: {fileID: 588427084}
   m_Layer: 0
   m_Name: anim
   m_TagString: Untagged
@@ -13080,6 +13301,21 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   moveSequences: []
+--- !u!114 &588427084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588427080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 2
+  sound2: 0
+  sound3: 0
 --- !u!1 &591652102
 GameObject:
   m_ObjectHideFlags: 0
@@ -13222,6 +13458,7 @@ GameObject:
   m_Component:
   - component: {fileID: 592261999}
   - component: {fileID: 592262000}
+  - component: {fileID: 592262001}
   m_Layer: 0
   m_Name: lemonLeaf
   m_TagString: Untagged
@@ -13273,6 +13510,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &592262001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592261998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 2
+  sound2: 0
+  sound3: 0
 --- !u!1 &595080448
 GameObject:
   m_ObjectHideFlags: 0
@@ -13612,6 +13864,8 @@ MonoBehaviour:
     delayFromStart: 0.5
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 3
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!1 &601280844
@@ -14569,6 +14823,98 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &664161295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 664161296}
+  - component: {fileID: 664161298}
+  - component: {fileID: 664161297}
+  - component: {fileID: 664161299}
+  m_Layer: 0
+  m_Name: Heart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &664161296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664161295}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.236, y: -0.604, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 485829731}
+  m_Father: {fileID: 1731078925}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &664161297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664161295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd3fb175693c821498868fcb3a94b26b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []
+  moveSequences: []
+--- !u!95 &664161298
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664161295}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dc86873a8647078468b5d93351bdb97b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &664161299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664161295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 6
+  sound2: 0
+  sound3: 0
 --- !u!1 &681407584
 GameObject:
   m_ObjectHideFlags: 0
@@ -14684,6 +15030,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!65 &681407589
@@ -15185,6 +15533,7 @@ GameObject:
   - component: {fileID: 709178407}
   - component: {fileID: 709178408}
   - component: {fileID: 709178409}
+  - component: {fileID: 709178410}
   m_Layer: 0
   m_Name: BottleAnim
   m_TagString: Untagged
@@ -15272,6 +15621,21 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   moveSequences: []
+--- !u!114 &709178410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709178406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 4
+  sound2: 0
+  sound3: 0
 --- !u!1 &715566746
 GameObject:
   m_ObjectHideFlags: 0
@@ -15685,6 +16049,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &719312650
@@ -16114,6 +16480,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: TakeBeeInPot
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &743519171
@@ -16538,6 +16906,7 @@ GameObject:
   - component: {fileID: 767440542}
   - component: {fileID: 767440543}
   - component: {fileID: 767440544}
+  - component: {fileID: 767440545}
   m_Layer: 7
   m_Name: Anim
   m_TagString: Untagged
@@ -16643,6 +17012,21 @@ MonoBehaviour:
     objectsToEnableOnComplete:
     - {fileID: 164768867}
     - {fileID: 264763592}
+--- !u!114 &767440545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767440541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 2
+  sound2: 0
+  sound3: 0
 --- !u!1 &773246087
 GameObject:
   m_ObjectHideFlags: 0
@@ -17826,6 +18210,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 2.5
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &828605738
@@ -18353,6 +18739,7 @@ GameObject:
   - component: {fileID: 847446492}
   - component: {fileID: 847446493}
   - component: {fileID: 847446494}
+  - component: {fileID: 847446495}
   m_Layer: 8
   m_Name: Knife 3
   m_TagString: Untagged
@@ -18426,6 +18813,21 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   moveSequences: []
+--- !u!114 &847446495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847446487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 11
+  sound2: 0
+  sound3: 0
 --- !u!1 &848804247
 GameObject:
   m_ObjectHideFlags: 0
@@ -18873,6 +19275,7 @@ Transform:
   - {fileID: 1233348894}
   - {fileID: 30626120}
   - {fileID: 56156727}
+  - {fileID: 990706512}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &883584320
@@ -19545,6 +19948,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0.6
     triggerName: 
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!1 &937925048
@@ -19844,6 +20249,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!65 &943704296
@@ -19964,6 +20371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 958108266}
   - component: {fileID: 958108267}
+  - component: {fileID: 958108268}
   m_Layer: 8
   m_Name: SaltFX
   m_TagString: Untagged
@@ -20011,6 +20419,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &958108268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958108265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 12
+  sound2: 0
+  sound3: 0
 --- !u!1 &964021725
 GameObject:
   m_ObjectHideFlags: 0
@@ -20744,6 +21167,95 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &990706511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 990706512}
+  - component: {fileID: 990706513}
+  m_Layer: 0
+  m_Name: SOund
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &990706512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990706511}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1298114640}
+  m_Father: {fileID: 867861460}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &990706513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990706511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06bcf16a53012554f8676e04001829c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fxAudio:
+    None:
+      clip: {fileID: 0}
+      repeatCount: 1
+    PickableItemPickSound:
+      clip: {fileID: 8300000, guid: 88c4912e52b816f48abc27e525f6b1aa, type: 3}
+      repeatCount: 1
+    PickableItemDropSound:
+      clip: {fileID: 8300000, guid: 7aa85067e681fdb4dba53d66cf1f8c2f, type: 3}
+      repeatCount: 1
+    WaterBottle:
+      clip: {fileID: 8300000, guid: 22f9aa29c85ba25419b061f66e777f71, type: 3}
+      repeatCount: 1
+    WaterDrop:
+      clip: {fileID: 8300000, guid: 4894ae0286dd5eb4a9f23944f5874c9d, type: 3}
+      repeatCount: 1
+    GasClick:
+      clip: {fileID: 8300000, guid: 9f30c06b05e05da419aab34c0aa981c0, type: 3}
+      repeatCount: 1
+    Heart:
+      clip: {fileID: 8300000, guid: cfd8cbb8ac7df7a49985ac4098fd0e8c, type: 3}
+      repeatCount: 1
+    Boil:
+      clip: {fileID: 8300000, guid: c35216b0049820d43b396a643a131276, type: 3}
+      repeatCount: 1
+    Put2:
+      clip: {fileID: 8300000, guid: 2699d3354183b7c459ea6fe24e831ec8, type: 3}
+      repeatCount: 1
+    Knife:
+      clip: {fileID: 8300000, guid: 95e5bb8284eab44449501e45bfc22c40, type: 3}
+      repeatCount: 1
+    Cutting:
+      clip: {fileID: 8300000, guid: c8c67a06a3021bd4f98a1839d3b2b240, type: 3}
+      repeatCount: 1
+    KnifeWing:
+      clip: {fileID: 8300000, guid: e6bd90150468dbc49a708e98362056c0, type: 3}
+      repeatCount: 1
+    SaltDrop:
+      clip: {fileID: 8300000, guid: bc232d7e7402d1346aabdf908489f204, type: 3}
+      repeatCount: 1
+    Cookin_Pan_Fryin_003_01:
+      clip: {fileID: 8300000, guid: be7cef71a8055ce4da32ed2cbe3c02ef, type: 3}
+      repeatCount: 1
+  bgm1: {fileID: 1298114641}
 --- !u!1 &992087429
 GameObject:
   m_ObjectHideFlags: 0
@@ -21926,6 +22438,7 @@ GameObject:
   - component: {fileID: 1065164075}
   - component: {fileID: 1065164077}
   - component: {fileID: 1065164076}
+  - component: {fileID: 1065164078}
   m_Layer: 8
   m_Name: Anim
   m_TagString: Untagged
@@ -22074,6 +22587,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1065164078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065164074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 2
+  sound2: 0
+  sound3: 0
 --- !u!1 &1067717746
 GameObject:
   m_ObjectHideFlags: 0
@@ -22555,6 +23083,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &1104595779
@@ -23131,6 +23661,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!1 &1147518054
@@ -23690,6 +24222,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!1 &1178059612
@@ -25323,6 +25857,8 @@ MonoBehaviour:
     delayFromStart: 2.6
     durationToDeactivate: 0.05
     triggerName: 
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
   holdPoint: {fileID: 1213107349}
@@ -25338,6 +25874,8 @@ MonoBehaviour:
   flyToBasketDuration: 0.5
   jumpPower: 1.5
   finalSortingOrder: 61
+  pickSound: 1
+  dropIntoBasketSound: 2
   requiredPickables:
   - {fileID: 228741976}
   - {fileID: 167973853}
@@ -26493,6 +27031,135 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1298114639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1298114640}
+  - component: {fileID: 1298114641}
+  m_Layer: 0
+  m_Name: Bgm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1298114640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298114639}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 990706512}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1298114641
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298114639}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 30f9e213de3428a45ae1325ba95856bd, type: 3}
+  m_Resource: {fileID: 8300000, guid: 30f9e213de3428a45ae1325ba95856bd, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.468
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1300841727
 GameObject:
   m_ObjectHideFlags: 0
@@ -27275,6 +27942,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0.6
     triggerName: 
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!1 &1343345290
@@ -29902,6 +30571,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: TurnOff
+  interactSound: 5
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &1498540987
@@ -30664,6 +31335,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!1 &1540479465
@@ -31489,6 +32162,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &1580580076
@@ -31620,6 +32295,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: TurnOff
+  interactSound: 5
+  sequenceLoopSound: 7
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!65 &1584471961
@@ -33074,6 +33751,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 2
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!1 &1633278338
@@ -33315,6 +33994,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &1634636026
@@ -35824,6 +36505,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &1698472033
@@ -36146,6 +36829,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: BasketToPot
+  interactSound: 1
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!1 &1718799533
@@ -36216,6 +36901,7 @@ Transform:
   - {fileID: 1790410278}
   - {fileID: 1168986687}
   - {fileID: 345248094}
+  - {fileID: 664161296}
   m_Father: {fileID: 149327182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1731078926
@@ -36503,6 +37189,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 9
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &1736840843
@@ -37292,6 +37980,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!95 &1779076517
@@ -37983,6 +38673,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &1806472030
@@ -38779,6 +39471,7 @@ GameObject:
   - component: {fileID: 1834516291}
   - component: {fileID: 1834516292}
   - component: {fileID: 1834516293}
+  - component: {fileID: 1834516294}
   m_Layer: 0
   m_Name: ChiliInPlate
   m_TagString: Untagged
@@ -38852,6 +39545,21 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   moveSequences: []
+--- !u!114 &1834516294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834516290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 2
+  sound2: 0
+  sound3: 0
 --- !u!1 &1837911971
 GameObject:
   m_ObjectHideFlags: 0
@@ -39753,6 +40461,7 @@ GameObject:
   - component: {fileID: 1876491306}
   - component: {fileID: 1876491307}
   - component: {fileID: 1876491308}
+  - component: {fileID: 1876491309}
   m_Layer: 0
   m_Name: OilAnim2
   m_TagString: Untagged
@@ -39851,6 +40560,21 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   moveSequences: []
+--- !u!114 &1876491309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876491305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 3
+  sound2: 0
+  sound3: 0
 --- !u!1 &1880266979
 GameObject:
   m_ObjectHideFlags: 0
@@ -39862,6 +40586,7 @@ GameObject:
   - component: {fileID: 1880266980}
   - component: {fileID: 1880266981}
   - component: {fileID: 1880266982}
+  - component: {fileID: 1880266983}
   m_Layer: 0
   m_Name: Heart (1)
   m_TagString: Untagged
@@ -40023,6 +40748,21 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   moveSequences: []
+--- !u!114 &1880266983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880266979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 6
+  sound2: 0
+  sound3: 0
 --- !u!1 &1882866963
 GameObject:
   m_ObjectHideFlags: 0
@@ -40262,6 +41002,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &1883274555
@@ -40761,6 +41503,7 @@ GameObject:
   - component: {fileID: 1904635374}
   - component: {fileID: 1904635375}
   - component: {fileID: 1904635376}
+  - component: {fileID: 1904635377}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -40826,6 +41569,21 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls: []
   moveSequences: []
+--- !u!114 &1904635377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904635373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 6
+  sound2: 0
+  sound3: 0
 --- !u!1 &1913926284
 GameObject:
   m_ObjectHideFlags: 0
@@ -41043,6 +41801,7 @@ GameObject:
   - component: {fileID: 1922098982}
   - component: {fileID: 1922098983}
   - component: {fileID: 1922098984}
+  - component: {fileID: 1922098985}
   m_Layer: 0
   m_Name: PlateInPot
   m_TagString: Untagged
@@ -41178,6 +41937,21 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   moveSequences: []
+--- !u!114 &1922098985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922098981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 2
+  sound2: 0
+  sound3: 0
 --- !u!1 &1922540131
 GameObject:
   m_ObjectHideFlags: 0
@@ -41417,6 +42191,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &1927180286
@@ -41664,6 +42440,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!65 &1931782660
@@ -41876,6 +42654,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &1935244793
@@ -42532,6 +43312,8 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!65 &1959252177
@@ -43142,6 +43924,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &1990578976
@@ -43957,6 +44741,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 0
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &2015360807
@@ -45794,6 +46580,7 @@ GameObject:
   - component: {fileID: 2107485250}
   - component: {fileID: 2107485251}
   - component: {fileID: 2107485252}
+  - component: {fileID: 2107485253}
   m_Layer: 8
   m_Name: Anim
   m_TagString: Untagged
@@ -45930,6 +46717,21 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   moveSequences: []
+--- !u!114 &2107485253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107485249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 2
+  sound2: 0
+  sound3: 0
 --- !u!1 &2109365758
 GameObject:
   m_ObjectHideFlags: 0
@@ -46110,6 +46912,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2126850511}
   - component: {fileID: 2126850512}
+  - component: {fileID: 2126850513}
   m_Layer: 0
   m_Name: TongInPot
   m_TagString: Untagged
@@ -46157,6 +46960,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2126850513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126850510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 1
+  sound2: 0
+  sound3: 0
 --- !u!1 &2141347067
 GameObject:
   m_ObjectHideFlags: 0
@@ -46340,6 +47158,12 @@ MonoBehaviour:
     delayFromStart: 0
     durationToDeactivate: 0
     triggerName: ItemToBasket
+  - animObj: {fileID: 664161295}
+    delayFromStart: 0
+    durationToDeactivate: 0
+    triggerName: 
+  interactSound: 8
+  sequenceLoopSound: 3
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &2142979557
@@ -46804,6 +47628,7 @@ GameObject:
   - component: {fileID: 4460988572256188747}
   - component: {fileID: 1909890983596051870}
   - component: {fileID: 8664286005487607425}
+  - component: {fileID: 8664286005487607426}
   m_Layer: 8
   m_Name: DropBee
   m_TagString: Untagged
@@ -47540,6 +48365,8 @@ MonoBehaviour:
         m_CallState: 2
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!4 &4808628380392713963
@@ -47568,6 +48395,7 @@ GameObject:
   - component: {fileID: 907445026099081554}
   - component: {fileID: 3856312317168006450}
   - component: {fileID: 2426051178333888531}
+  - component: {fileID: 4913894454078039976}
   m_Layer: 8
   m_Name: DropBee
   m_TagString: Untagged
@@ -47575,6 +48403,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4913894454078039976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4913894454078039975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 2
+  sound2: 0
+  sound3: 0
 --- !u!114 &4999760422037003013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47614,6 +48457,7 @@ GameObject:
   - component: {fileID: 5808030043504562682}
   - component: {fileID: 4999760422037003013}
   - component: {fileID: 2746153079389797685}
+  - component: {fileID: 5808030043504562683}
   m_Layer: 8
   m_Name: DropBee
   m_TagString: Untagged
@@ -47727,6 +48571,21 @@ Transform:
   - {fileID: 6103088642334312876}
   m_Father: {fileID: 186892858023477118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5808030043504562683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5052247204946905397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 2
+  sound2: 0
+  sound3: 0
 --- !u!1 &5936723113454278509
 GameObject:
   m_ObjectHideFlags: 0
@@ -48537,6 +49396,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8664286005487607426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2325110837647604866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925b81139b88ca44ab7fd69cb08ec6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound1: 2
+  sound2: 0
+  sound3: 0
 --- !u!212 &8713934922075334099
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -9,24 +9,19 @@ using UnityEditor;
 public enum FxType
 {
     None,
-    Click,
-    StartVoice,
-    voice_lv52_bottle,
-    voice_lv52_fruit,
-    voice_lv52_icecup,
-    voice_lv52_icream,
-    voice_lv52_ladle,
-    voice_lv52_milk,
-    voice_lv52_shirt,
-    voice_lv52_tofu,
-    voice_lv52_water,
-    Correct,
-    FridgeOpen,
-    water,
-    mouse,
-    wrong,
-    haa
-
+    PickableItemPickSound,
+    PickableItemDropSound,
+    WaterBottle,
+    WaterDrop,
+    GasClick,
+    Heart,
+    Boil,
+    Put2,
+    Knife,
+    Cutting,
+    KnifeWing,
+    SaltDrop,
+    Cookin_Pan_Fryin_003_01
 }
 
 [System.Serializable]
@@ -40,28 +35,26 @@ public class SoundData
 public class FxAudio
 {
     public SoundData None;
-    public SoundData ClickBox;
-    public SoundData StartVoice;
-    public SoundData voice_lv52_bottle;
-    public SoundData voice_lv52_fruit;  
-    public SoundData voice_lv52_icecup;
-    public SoundData voice_lv52_icream;
-    public SoundData voice_lv52_ladle;
-    public SoundData voice_lv52_milk;
-    public SoundData voice_lv52_shirt;
-    public SoundData voice_lv52_tofu;
-    public SoundData voice_lv52_water;
-    public SoundData Correct;
-    public SoundData FridgeOpen;
-    public SoundData water;
-    public SoundData mouse;
-    public SoundData wrong;
-    public SoundData haa;
+
+    public SoundData PickableItemPickSound ;
+    public SoundData PickableItemDropSound ;
+    public SoundData WaterBottle;
+    public SoundData WaterDrop;
+    public SoundData GasClick;
+    public SoundData Heart;
+    public SoundData Boil;
+    public SoundData Put2;
+    public SoundData Knife;
+    public SoundData Cutting;
+    public SoundData KnifeWing;
+    public SoundData SaltDrop;
+    public SoundData Cookin_Pan_Fryin_003_01;
 }
 
 public class Ply_SoundManager : Ply_Singleton<Ply_SoundManager>
 {
     public FxAudio fxAudio;
+    
     public AudioSource bgm1;
     // Tăng kích thước mảng lên 50 để tránh lỗi khi bạn thêm nhiều FxType mới
     private AudioSource[] fx = new AudioSource[50];
@@ -135,23 +128,19 @@ public class Ply_SoundManager : Ply_Singleton<Ply_SoundManager>
         switch (type)
         {
             case FxType.None: return fxAudio.None;
-            case FxType.Click: return fxAudio.ClickBox;
-            case FxType.StartVoice: return fxAudio.StartVoice;
-            case FxType.voice_lv52_bottle: return fxAudio.voice_lv52_bottle;
-            case FxType.voice_lv52_fruit: return fxAudio.voice_lv52_fruit;
-            case FxType.voice_lv52_icecup: return fxAudio.voice_lv52_icecup;
-            case FxType.voice_lv52_icream: return fxAudio.voice_lv52_icream;
-            case FxType.voice_lv52_ladle: return fxAudio.voice_lv52_ladle;
-            case FxType.voice_lv52_milk: return fxAudio.voice_lv52_milk;
-            case FxType.voice_lv52_shirt: return fxAudio.voice_lv52_shirt;
-            case FxType.voice_lv52_tofu: return fxAudio.voice_lv52_tofu;
-            case FxType.voice_lv52_water: return fxAudio.voice_lv52_water;
-            case FxType.Correct: return fxAudio.Correct;
-            case FxType.FridgeOpen: return fxAudio.FridgeOpen;
-            case FxType.water: return fxAudio.water;
-            case FxType.mouse: return fxAudio.mouse;
-            case FxType.wrong: return fxAudio.wrong;
-            case FxType.haa: return fxAudio.haa;
+            case FxType.PickableItemPickSound: return fxAudio.PickableItemPickSound;
+            case FxType.PickableItemDropSound: return fxAudio.PickableItemDropSound;
+            case FxType.WaterBottle: return fxAudio.WaterBottle;
+            case FxType.WaterDrop: return fxAudio.WaterDrop;
+            case FxType.GasClick: return fxAudio.GasClick;
+            case FxType.Heart: return fxAudio.Heart;
+            case FxType.Boil: return fxAudio.Boil;
+            case FxType.Put2: return fxAudio.Put2;
+            case FxType.Knife: return fxAudio.Knife;
+            case FxType.Cutting: return fxAudio.Cutting;
+            case FxType.KnifeWing: return fxAudio.KnifeWing;
+            case FxType.SaltDrop: return fxAudio.SaltDrop;
+            case FxType.Cookin_Pan_Fryin_003_01: return fxAudio.Cookin_Pan_Fryin_003_01;
             default: return null;
         }
     }

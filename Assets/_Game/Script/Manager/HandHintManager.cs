@@ -138,10 +138,21 @@ public class HandHintManager : MonoBehaviour
 
     private void ShowHandHintForCurrentItem()
     {
-        handHintObject.SetActive(true);
-
-        // Xóa các hiệu ứng kéo trước đó
         currentDragTween?.Kill();
+        currentDragTween = null;
+
+        if (handHintObject != null)
+        {
+            handHintObject.transform.DOKill();
+            handHintObject.SetActive(true);
+        }
+
+        // Đảm bảo Animator quay về trạng thái mặc định, tránh việc bị lệch Transform do ngắt animation giữa chừng
+        if (handAnimator != null)
+        {
+            handAnimator.Rebind();
+            handAnimator.Update(0f);
+        }
 
         ItemController currentItem = GetNextActiveItem();
 
@@ -152,15 +163,30 @@ public class HandHintManager : MonoBehaviour
             {
                 Debug.Log("[HandHint] Enter TongItem hint logic! currentItem: " + tongItem.name);
                 handHintObject.transform.position = currentItem.transform.position;
-                Transform target = tongItem.GetHintTarget();
                 
-                Debug.Log("[HandHint] Target from GetHintTarget: " + (target != null ? target.name : "NULL"));
-                Debug.Log("[HandHint] Tong dropTarget: " + (tongItem.dropTarget != null ? tongItem.dropTarget.name : "NULL"));
-
-                if (target != null)
+                if (tongItem.IsHoldingItem)
                 {
-                    // Nếu mục tiêu hiện tại KHÁC cái rổ (tức là Kẹp đang trống, mục tiêu là đồ ăn)
-                    if (target != tongItem.dropTarget)
+                    // Kẹp ĐANG ngậm đồ ăn
+                    Transform target = tongItem.dropTarget;
+                    if (target == null && tongItem.CurrentHeldItem != null)
+                    {
+                        ItemController heldCtrl = tongItem.CurrentHeldItem.GetComponent<ItemController>();
+                        if (heldCtrl != null) target = heldCtrl.dropTarget;
+                    }
+
+                    if (target != null)
+                    {
+                        currentDragTween = handHintObject.transform.DOMove(target.position, dragAnimDuration)
+                            .SetEase(Ease.InOutSine)
+                            .SetLoops(-1, LoopType.Restart);
+                    }
+                }
+                else
+                {
+                    // Kẹp ĐANG TRỐNG, tìm đồ ăn để gắp
+                    Transform target = tongItem.GetHintTarget();
+
+                    if (target != null)
                     {
                         Transform finalDropTarget = tongItem.dropTarget;
 
@@ -193,12 +219,6 @@ public class HandHintManager : MonoBehaviour
                                 .SetEase(Ease.InOutSine)
                                 .SetLoops(-1, LoopType.Restart);
                         }
-                    }
-                    else // Nếu mục tiêu LÀ cái rổ (Kẹp đang ngậm đồ ăn)
-                    {
-                        currentDragTween = handHintObject.transform.DOMove(target.position, dragAnimDuration)
-                            .SetEase(Ease.InOutSine)
-                            .SetLoops(-1, LoopType.Restart);
                     }
                 }
                 return;
@@ -276,10 +296,13 @@ public class HandHintManager : MonoBehaviour
 
     public void HideHandHint()
     {
-        if (handHintObject != null && handHintObject.activeInHierarchy)
+        currentDragTween?.Kill();
+        currentDragTween = null;
+        
+        if (handHintObject != null)
         {
+            handHintObject.transform.DOKill();
             handHintObject.SetActive(false);
-            currentDragTween?.Kill();
         }
     }
 

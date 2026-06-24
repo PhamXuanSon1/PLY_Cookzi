@@ -161,6 +161,13 @@ MonoBehaviour:
   dropDistanceThreshold: 2
   hideSpriteOnDrop: 1
   disableColliderOnComplete: 1
+  isTool: 0
+  customDragBounds: {fileID: 0}
+  increaseSortingLayerOnDrag: 1
+  isLocked: 0
+  onInteractWhileLocked:
+    m_PersistentCalls:
+      m_Calls: []
   onClick:
     m_PersistentCalls:
       m_Calls: []
@@ -190,6 +197,8 @@ MonoBehaviour:
       m_Calls: []
   isSequentialClick: 0
   animationObjects: []
+  interactSound: 8
+  sequenceLoopSound: 0
   fxSoundsStartAnim: 
   fxSoundsAfterAnim: 
 --- !u!114 &4084578415130570688

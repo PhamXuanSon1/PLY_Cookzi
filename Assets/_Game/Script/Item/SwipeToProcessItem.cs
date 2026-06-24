@@ -47,6 +47,12 @@ public class SwipeToProcessItem : MonoBehaviour
     private bool isDragging = false;
     
     private Vector3 initialBarScale;
+    private ItemController itemController;
+
+    private void Awake()
+    {
+        itemController = GetComponent<ItemController>();
+    }
 
     private void Start()
     {
@@ -59,6 +65,18 @@ public class SwipeToProcessItem : MonoBehaviour
             if (isVerticalBar) scale.y = 0;
             else scale.x = 0;
             progressBarTransform.localScale = scale;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (isDragging)
+        {
+            isDragging = false;
+            if (itemController != null && itemController.sequenceLoopSound != FxType.None && Ply_SoundManager.Ins != null)
+            {
+                Ply_SoundManager.Ins.StopFx(itemController.sequenceLoopSound);
+            }
         }
     }
 
@@ -90,6 +108,11 @@ public class SwipeToProcessItem : MonoBehaviour
                     isDragging = true;
                     lastWorldPos = mousePos;
                     onBeginSwipe?.Invoke();
+
+                    if (itemController != null && itemController.sequenceLoopSound != FxType.None && Ply_SoundManager.Ins != null)
+                    {
+                        Ply_SoundManager.Ins.PlayLoopFx(itemController.sequenceLoopSound);
+                    }
                 }
             }
         }
@@ -101,6 +124,11 @@ public class SwipeToProcessItem : MonoBehaviour
             {
                 isDragging = false;
                 onEndSwipe?.Invoke();
+
+                if (itemController != null && itemController.sequenceLoopSound != FxType.None && Ply_SoundManager.Ins != null)
+                {
+                    Ply_SoundManager.Ins.StopFx(itemController.sequenceLoopSound);
+                }
 
                 // Nếu đã hoàn thành nhiệm vụ thì gọi sự kiện thả tay
                 if (currentFlips >= requiredFlips)

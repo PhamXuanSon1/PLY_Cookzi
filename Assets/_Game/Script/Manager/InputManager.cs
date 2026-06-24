@@ -116,17 +116,16 @@ public class InputManager : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, itemLayer))
         {
-            // Phát âm thanh Click thông qua Ply_SoundManager (nếu có)
-            if (Ply_SoundManager.Ins != null)
-            {
-                Ply_SoundManager.Ins.PlayFx(FxType.Click);
-            }
-
             mouseDownPos = Input.mousePosition;
 
             ItemController itemController = hit.transform.GetComponent<ItemController>();
             if (itemController != null)
             {
+                if (itemController.interactSound != FxType.None && Ply_SoundManager.Ins != null)
+                {
+                    Ply_SoundManager.Ins.PlayFx(itemController.interactSound);
+                }
+
                 if (itemController.itemType == ItemType.Pickable)
                 {
                     return; // Ngăn chặn việc click/kéo thả trực tiếp bằng chuột
@@ -233,6 +232,11 @@ public class InputManager : MonoBehaviour
 
         ItemGraphic itemGraphic = draggedObject.GetComponent<ItemGraphic>();
         ItemController itemCtrl = draggedObject.GetComponent<ItemController>();
+
+        if (itemCtrl != null && itemCtrl.interactSound != FxType.None && Ply_SoundManager.Ins != null)
+        {
+            Ply_SoundManager.Ins.PlayFx(itemCtrl.interactSound);
+        }
 
         if (itemGraphic != null)
         {
